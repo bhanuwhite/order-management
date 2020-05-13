@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import { filter } from 'rxjs/operators';
+import { AuthService } from './../../../Shared/Services/auth.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -6,10 +9,45 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  constructor() { }
+  isValidFormSubmitted: boolean = true
+  @ViewChild('myForm') form: any;
+  possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,./;'[]\=-)(*&^%$#@!~`";
+  lengthOfCode = 60;
+  allUser: any = []
+  user: any = {
+    email: '',
+    password: ''
+  };
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+
   }
+
+  postLogin(formObject) {
+    this.auth.getAllUser().subscribe(res => {
+      this.allUser = res
+      this.allUser.filter(res => {
+        if (res.email == this.user.email && res.password == this.user.password) {
+          console.log("login")
+          this.makeRandom(this.lengthOfCode, this.possible);
+          this.form.reset();
+          this.router.navigate(['customers/card-view'])
+        } else { }
+      })
+    })
+  }
+
+  makeRandom(lengthOfCode: number, possible: string) {
+    let text = "";
+    for (let i = 0; i < lengthOfCode; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    console.log(text)
+    localStorage.setItem('randToken', JSON.stringify(text));
+  }
+
+
+
 
 }

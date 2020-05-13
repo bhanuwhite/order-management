@@ -38,7 +38,7 @@
       "name": "shalaj",
       "email": "shalaj@gmail.com",
       "password": "123456",
-      "image": "../assets/images/7-2-customer-high-quality-png",
+      "image": "src/assets/images/7-2-customer-high-quality-png",
       "id": 2,
       "address": "123 E Broadway",
       "city": "Phonix",
