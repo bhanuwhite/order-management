@@ -1,3 +1,4 @@
+import { Customers } from './../../../Shared/models/customers';
 import { CustomerService } from './../../../Shared/Services/customer.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card-view.component.css']
 })
 export class CardViewComponent implements OnInit {
-  allCustomer: any;
+  allCustomer: Customers[];
   constructor(private service: CustomerService) { }
 
   ngOnInit(): void {
@@ -16,7 +17,6 @@ export class CardViewComponent implements OnInit {
 
   getCustomerList() {
     this.service.getCardViewCustomer().subscribe(res => {
-      console.log(res)
       this.allCustomer = res
     })
   }

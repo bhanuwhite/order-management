@@ -1,3 +1,4 @@
+import { Customers } from './../../../Shared/models/customers';
 import { Router } from "@angular/router";
 import { filter } from 'rxjs/operators';
 import { AuthService } from './../../../Shared/Services/auth.service';
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   @ViewChild('myForm') form: any;
   possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,./;'[]\=-)(*&^%$#@!~`";
   lengthOfCode = 60;
-  allUser: any = []
+  allUser: Customers[];
   user: any = {
     email: '',
     password: ''
