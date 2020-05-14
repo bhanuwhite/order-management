@@ -1,8 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Constant } from "../utility/constant";
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import {Customers } from '../models/customers';
+import { catchError } from 'rxjs/operators';
+//import { throwError } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +14,13 @@ export class CustomerService {
   constructor(private http: HttpClient) { }
   
   getCardViewCustomer():Observable<Customers[]>{
-    return this.http.get<Customers[]>(Constant.url + "users");
+    return this.http.get<Customers[]>(Constant.url + "users")
+    .pipe(catchError(this.errorHandler));
+  }
+  errorHandler(error: HttpErrorResponse){
+    console.log("I am in serve error");
+    
+     return throwError(error.message)
   }
 
 }

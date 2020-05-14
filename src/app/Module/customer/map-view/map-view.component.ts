@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./map-view.component.css']
 })
 export class MapViewComponent implements OnInit {
+  lat: number = 17.4435;
+  lng: number = 78.3772;
 
   constructor() { }
 

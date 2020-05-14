@@ -8,6 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/header/header.component';
 import { FormsModule } from '@angular/forms';
+import { AgmCoreModule } from '@agm/core';
+// import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,12 @@ import { FormsModule } from '@angular/forms';
     AuthModule,
     HttpClientModule,
     FormsModule,
-    CustomerModule
+    CustomerModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDTixkpugrGiJ3YHQlnulIW_shRuQFGnQA',
+      libraries: ['places']
+    })
+    // AgmJsMarkerClustererModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true }

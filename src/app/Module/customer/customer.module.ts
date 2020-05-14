@@ -7,6 +7,8 @@ import { CustomerHeaderComponent } from './customer-header/customer-header.compo
 import { ListViewComponent } from './list-view/list-view.component';
 import { MapViewComponent } from './map-view/map-view.component';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
+import { AgmCoreModule } from '@agm/core';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -26,6 +28,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+    AgmCoreModule,
+    HttpClientModule,
     RouterModule.forChild(routes),
   ]
 })
