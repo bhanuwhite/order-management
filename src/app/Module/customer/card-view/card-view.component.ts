@@ -9,16 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardViewComponent implements OnInit {
   allCustomer: Customers[];
-  errorMsg: any;
+  errorMsg: string;
   constructor(private customerService: CustomerService) { }
 
   ngOnInit(): void {
-    this.getCustomerList()
+    this.getCustomerList();
   }
 
   public getCustomerList(): void {
-    this.customerService.getCardViewCustomer().subscribe(res => {
-      this.allCustomer = res, (error) => { debugger; this.errorMsg = error };
-    });
+    this.customerService.getCardViewCustomer().subscribe((res) => { this.allCustomer = res },
+      (error) => { this.errorMsg = error });
   }
+
 }

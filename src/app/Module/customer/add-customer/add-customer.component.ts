@@ -15,24 +15,41 @@ export class AddCustomerComponent implements OnInit {
     email: '',
     password: ''
   };
+  
+  cityList: string[] = ['New York', 'Los Angeles', 'Chicago', 'Houston'];
   constructor() { }
 
   ngOnInit(): void {
 
   }
 
+  // postLogin(formObject) {
+  // this.auth.getAllUser().subscribe(res => {
+  //   this.allUser = res
+  //   this.allUser.filter(res => {
+  //     if (res.email == this.user.email && res.password == this.user.password) {
+  //       console.log("login")
+  //       this.makeRandom(this.lengthOfCode, this.possible);
+  //       this.form.reset();
+  //       this.router.navigate(['customers/card-view'])
+  //     } else { }
+  //   })
+  // })
+  // }
+
   postLogin(formObject) {
-    // this.auth.getAllUser().subscribe(res => {
-    //   this.allUser = res
-    //   this.allUser.filter(res => {
-    //     if (res.email == this.user.email && res.password == this.user.password) {
-    //       console.log("login")
-    //       this.makeRandom(this.lengthOfCode, this.possible);
-    //       this.form.reset();
-    //       this.router.navigate(['customers/card-view'])
-    //     } else { }
-    //   })
-    // })
+    console.log(formObject);
+    formObject.lat = "40.713829";
+    formObject.lng = "40.713829";
+     if (formObject.gender =="male") {
+      console.log("I am in male");
+      formObject.image = "assets/images/unnamed.png";
+    }
+    if (formObject.gender =="female") {
+      console.log("I am in female");
+      formObject.image = "assets/images/teacher-295387_960_720.png";
+    }
+    console.log(formObject);
   }
 
   makeRandom(lengthOfCode: number, possible: string) {

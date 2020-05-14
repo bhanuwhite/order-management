@@ -17,10 +17,22 @@ export class CustomerService {
     return this.http.get<Customers[]>(Constant.url + "users")
     .pipe(catchError(this.errorHandler));
   }
-  errorHandler(error: HttpErrorResponse){
-    console.log("I am in serve error");
-    
-     return throwError(error.message)
+  // errorHandler(error: HttpErrorResponse){
+  //   console.log("I am in serve error");    
+  //    return throwError(error.message)
+  // }
+  errorHandler(error) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
   }
+
 
 }
