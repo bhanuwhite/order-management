@@ -25,10 +25,19 @@ export class CustomerService {
   createUser(user): Observable<Customers[]> {
     return this.http.post<Customers[]>(Constant.url + "users", user)
   }
+
+  createCustomer(customersInfo : Customers){
+    return this.http.post(Constant.url + "users",customersInfo);
+  }
   // errorHandler(error: HttpErrorResponse){
   //   console.log("I am in serve error");    
   //    return throwError(error.message)
   // }
+
+  deleteCustomer(id : number){
+    return this.http.delete<Customers[]>(Constant.url+"users"+'/'+ id);
+  }
+
   errorHandler(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

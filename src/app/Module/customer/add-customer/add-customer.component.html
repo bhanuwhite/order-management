@@ -39,5 +39,5 @@
         <input type="file" class="form-control" name="image" [(ngModel)]="user.image" #image="ngModel" required>
     </div> -->
 
-    <button type="button" class="btn btn-primary" (click)="postLogin(myForm.value)">Add Customer</button>
+    <button type="submit" class="btn btn-primary" (click)="postLogin(myForm.value);myForm.reset()">Submit</button>
 </form>

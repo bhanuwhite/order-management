@@ -73,6 +73,8 @@
                     </div>
                 </div>
                 <span><i class="fas fa-trash ml-2"></i></span>
+                <span class="spanEdit"><i class="fas fa-edit"></i> <i class="fas fa-trash ml-2"
+                        (click)="deleteCustomer(customer)"></i></span>
             </div>
             <div class="card-body row ">
                 <div class="col" style="padding-right:0;">
@@ -87,5 +89,6 @@
         </div>
     </div>
 </div>
+
 
 <h3>{{errorMsg}}</h3>
