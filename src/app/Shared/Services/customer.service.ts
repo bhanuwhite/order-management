@@ -17,10 +17,19 @@ export class CustomerService {
     return this.http.get<Customers[]>(Constant.url + "users")
     .pipe(catchError(this.errorHandler));
   }
+
+  createCustomer(customersInfo : Customers){
+    return this.http.post(Constant.url + "users",customersInfo);
+  }
   // errorHandler(error: HttpErrorResponse){
   //   console.log("I am in serve error");    
   //    return throwError(error.message)
   // }
+
+  deleteCustomer(id : number){
+    return this.http.delete<Customers[]>(Constant.url+"users"+'/'+ id);
+  }
+
   errorHandler(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

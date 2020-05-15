@@ -21,4 +21,12 @@ export class CardViewComponent implements OnInit {
       (error) => { this.errorMsg = error });
   }
 
+  public deleteCustomer(customer : Customers):void{
+    console.log("I am in delete" + customer);
+       this.customerService.deleteCustomer(+customer.id).subscribe(
+         data => {this.allCustomer = this.allCustomer. filter(u =>
+          u !== customer),alert("Are you sure you want to delete this cutomer ?")}
+       );
+  }
+
 }

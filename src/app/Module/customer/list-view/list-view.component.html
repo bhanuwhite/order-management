@@ -15,7 +15,7 @@
                 <td><img width="40" height="40" src="{{customer.image}}" alt="Card image"></td>
                 <td>{{customer.name}}</td>
                 <td>{{customer.address}}</td> 
-                <td ><i class="fas fa-edit"></i> <i class="fas fa-trash ml-3"></i> </td>               
+                <td ><i class="fas fa-edit"></i> <i class="fas fa-trash ml-3" (click)="deleteCustomer(customer)"></i> </td>               
                 
             </tr>
            </tbody>

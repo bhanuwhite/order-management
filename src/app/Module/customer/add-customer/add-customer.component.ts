@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CustomerService } from 'src/app/Shared/Services/customer.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-customer',
@@ -15,9 +17,9 @@ export class AddCustomerComponent implements OnInit {
     email: '',
     password: ''
   };
-  
+
   cityList: string[] = ['New York', 'Los Angeles', 'Chicago', 'Houston'];
-  constructor() { }
+  constructor(private customerService: CustomerService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -37,19 +39,20 @@ export class AddCustomerComponent implements OnInit {
   // })
   // }
 
-  postLogin(formObject) {
+  public postLogin(formObject): void {
     console.log(formObject);
     formObject.lat = "40.713829";
-    formObject.lng = "40.713829";
-     if (formObject.gender =="male") {
-      console.log("I am in male");
+    formObject.lng = "-73.989667";
+    if (formObject.gender == "male") {
       formObject.image = "assets/images/unnamed.png";
     }
-    if (formObject.gender =="female") {
-      console.log("I am in female");
+    if (formObject.gender == "female") {
+
       formObject.image = "assets/images/teacher-295387_960_720.png";
     }
-    console.log(formObject);
+    this.customerService.createCustomer(formObject).subscribe(data => {
+      alert("New customer record created."), this.router.navigate(['customers/card-view'])
+    });
   }
 
   makeRandom(lengthOfCode: number, possible: string) {
