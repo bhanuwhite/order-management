@@ -3,9 +3,8 @@
         <div class="card">
             <div class="card-header bg-primary headingEdit">
                 <span>{{customer.name}}</span>
-                <span class="spanEdit" data-toggle="modal" data-target="#exampleModal"><i
-                        class="fas fa-edit"></i> <i class="fas fa-trash ml-2"
-                        (click)="deleteCustomer(customer)"></i></span>
+                <span class="spanEdit" ><i data-toggle="modal" data-target="#exampleModal" class="fas fa-edit"></i> 
+                    <i class="fas fa-trash ml-2" (click)="deleteCustomer(customer)"></i></span>
 
 
 
@@ -69,11 +68,10 @@
                                         (click)="postLogin(myForm.value)">Submit</button>
                                 </form>
                             </div>
-
                         </div>
                     </div>
                 </div>
-               
+
             </div>
             <div class="card-body row ">
                 <div class="col" style="padding-right:0;">

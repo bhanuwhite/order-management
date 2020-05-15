@@ -81,8 +81,7 @@ export class CardViewComponent implements OnInit {
     })
   }
   public deleteCustomer(customer: Customers): void {
-    console.log("I am in delete" + customer);
-    this.customerService.deleteCustomer(+customer.id).subscribe(
+     this.customerService.deleteCustomer(+customer.id).subscribe(
       data => {
         this.allCustomer = this.allCustomer.filter(u =>
           u !== customer), alert("Customer Record Deleted")
