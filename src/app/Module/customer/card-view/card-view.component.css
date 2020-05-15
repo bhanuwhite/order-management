@@ -11,8 +11,16 @@
     float: right;
 }
 
+/* .spanEdit a{
+color: #fff;
+} */
+
 .headingEdit{
-    color: white;
+    /* color: white; */
     font-weight: bold;
+}
+
+span{
+    color: white;
 }
 
