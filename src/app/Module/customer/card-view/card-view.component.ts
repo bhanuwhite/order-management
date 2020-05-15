@@ -85,7 +85,7 @@ export class CardViewComponent implements OnInit {
     this.customerService.deleteCustomer(+customer.id).subscribe(
       data => {
         this.allCustomer = this.allCustomer.filter(u =>
-          u !== customer), alert("Are you sure you want to delete this cutomer ?")
+          u !== customer), alert("Customer Record Deleted")
       }
     );
   }
