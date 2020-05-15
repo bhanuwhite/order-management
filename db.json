@@ -23,14 +23,24 @@
   ],
   "users": [
     {
-      "name": "Ted James",
+      "name": "kkk",
       "gender": "male",
-      "address": "102 , A Wing",
+      "address": "sdf",
       "city": "New York",
       "lat": "40.713829",
       "lng": "-73.989667",
       "image": "assets/images/unnamed.png",
       "id": 1
+    },
+    {
+      "name": "dddd",
+      "gender": "male",
+      "address": "sdf",
+      "city": "Los Angeles",
+      "lat": "40.713829",
+      "lng": "-73.989667",
+      "image": "assets/images/unnamed.png",
+      "id": 2
     }
   ],
   "orders": [

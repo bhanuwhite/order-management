@@ -53,6 +53,12 @@ export class CardViewComponent implements OnInit {
     console.log(formObject);
   }
 
+  viewCustomerDetails(id:number){
+console.log("see id " + id);
+     let viewdata;
+     this.customerService.getCardViewCustomer().subscribe(data => {console.log(data)});
+  }
+
 
   editUser(user) {
     this.isEdit = true
@@ -68,8 +74,7 @@ export class CardViewComponent implements OnInit {
     })
   }
   public deleteCustomer(customer: Customers): void {
-    console.log("I am in delete" + customer);
-    this.customerService.deleteCustomer(+customer.id).subscribe(
+     this.customerService.deleteCustomer(+customer.id).subscribe(
       data => {
         this.allCustomer = this.allCustomer.filter(u =>
           u !== customer), alert("Customer Record Deleted")
