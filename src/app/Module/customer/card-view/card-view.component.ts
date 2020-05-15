@@ -66,6 +66,12 @@ export class CardViewComponent implements OnInit {
     console.log(formObject);
   }
 
+  viewCustomerDetails(id:number){
+console.log("see id " + id);
+     let viewdata;
+     this.customerService.getCardViewCustomer().subscribe(data => {console.log(data)});
+  }
+
 
   editUser(user) {
     this.isEdit = true
