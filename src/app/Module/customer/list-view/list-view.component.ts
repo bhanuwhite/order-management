@@ -28,7 +28,7 @@ export class ListViewComponent implements OnInit {
     console.log("I am in delete" + customer);
        this.customerService.deleteCustomer(+customer.id).subscribe(
          data => {this.listCustomer = this.listCustomer. filter(u =>
-          u !== customer), alert("Are you sure you want to delete this cutomer ?")}
+          u !== customer), alert("Customer Record Deleted")}
        );
   }
 
