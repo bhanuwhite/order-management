@@ -1,4 +1,7 @@
+import { AuthService } from './../../Shared/Services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +9,40 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  checkLogin: string;
 
-  constructor() { }
+  isUserLogin: boolean = false;
+  constructor(private router: Router, private location: Location, private auth: AuthService) {
+    this.checkLogin = localStorage.getItem('randToken')
+    if (this.checkLogin) {
+      this.isUserLogin = true
+    }
+    else {
+      this.isUserLogin = false
+    }
+
+  }
 
   ngOnInit(): void {
+    // this.checkLogin = localStorage.getItem('randToken')
+    this.auth.getCheckLogin.subscribe(resp => {
+
+      this.isUserLogin = resp['isLoggedIn']
+
+      // this.isUserLogin = resp['isLoggedIn']
+
+      console.log(resp, "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv")
+    })
+
+
+
+  }
+
+
+
+  logout() {
+    localStorage.removeItem('randToken');
+    this.router.navigate(['login']);
   }
 
 }

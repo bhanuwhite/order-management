@@ -15,7 +15,7 @@ export class AddCustomerComponent implements OnInit {
     email: '',
     password: ''
   };
-  
+
   cityList: string[] = ['New York', 'Los Angeles', 'Chicago', 'Houston'];
   constructor() { }
 
@@ -41,11 +41,11 @@ export class AddCustomerComponent implements OnInit {
     console.log(formObject);
     formObject.lat = "40.713829";
     formObject.lng = "40.713829";
-     if (formObject.gender =="male") {
+    if (formObject.gender == "male") {
       console.log("I am in male");
       formObject.image = "assets/images/unnamed.png";
     }
-    if (formObject.gender =="female") {
+    if (formObject.gender == "female") {
       console.log("I am in female");
       formObject.image = "assets/images/teacher-295387_960_720.png";
     }

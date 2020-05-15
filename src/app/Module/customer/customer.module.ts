@@ -10,6 +10,7 @@ import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { AgmCoreModule } from '@agm/core';
 import { HttpClientModule } from '@angular/common/http';
 
+
 const routes: Routes = [
   {
     path: '', children: [
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'list-view', component: ListViewComponent },
       { path: 'map-view', component: MapViewComponent },
       { path: 'add-customer', component: AddCustomerComponent },
+
 
     ], component: CustomerHeaderComponent
   }
