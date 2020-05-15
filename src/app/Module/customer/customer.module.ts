@@ -11,6 +11,7 @@ import { AgmCoreModule } from '@agm/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ViewOrdersComponent } from './view-orders/view-orders.component';
 import { CustomerHeader2Component } from './customer-header2/customer-header2.component';
+import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
       { path: 'card-view', component: CardViewComponent },
       { path: 'list-view', component: ListViewComponent },
       { path: 'map-view', component: MapViewComponent },
+      { path: 'edit-customer', component: EditCustomerComponent },
       { path: 'add-customer', component: AddCustomerComponent },
     ], component: CustomerHeaderComponent,
   },
@@ -31,7 +33,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [CardViewComponent, CustomerHeaderComponent, ListViewComponent, MapViewComponent, AddCustomerComponent, ViewOrdersComponent, CustomerHeader2Component],
+  declarations: [CardViewComponent, CustomerHeaderComponent, ListViewComponent, MapViewComponent, AddCustomerComponent, ViewOrdersComponent, CustomerHeader2Component, EditCustomerComponent],
   imports: [
     CommonModule,
     FormsModule,
