@@ -21,18 +21,7 @@
       "id": 4
     }
   ],
-  "users": [
-    {
-      "name": "Ted James",
-      "gender": "male",
-      "address": "102 , A Wing",
-      "city": "New York",
-      "lat": "40.713829",
-      "lng": "-73.989667",
-      "image": "assets/images/unnamed.png",
-      "id": 1
-    }
-  ],
+  "users": [],
   "orders": [
     {
       "orderId": 101,
