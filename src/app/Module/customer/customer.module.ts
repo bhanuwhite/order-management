@@ -9,6 +9,7 @@ import { MapViewComponent } from './map-view/map-view.component';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { AgmCoreModule } from '@agm/core';
 import { HttpClientModule } from '@angular/common/http';
+import { ViewOrdersComponent } from './view-orders/view-orders.component';
 
 
 const routes: Routes = [
@@ -18,15 +19,13 @@ const routes: Routes = [
       { path: 'list-view', component: ListViewComponent },
       { path: 'map-view', component: MapViewComponent },
       { path: 'add-customer', component: AddCustomerComponent },
-
-
     ], component: CustomerHeaderComponent
-  }
-
+  },
+  { path: 'view-orders', component: ViewOrdersComponent },
 ];
 
 @NgModule({
-  declarations: [CardViewComponent, CustomerHeaderComponent, ListViewComponent, MapViewComponent, AddCustomerComponent],
+  declarations: [CardViewComponent, CustomerHeaderComponent, ListViewComponent, MapViewComponent, AddCustomerComponent, ViewOrdersComponent],
   imports: [
     CommonModule,
     FormsModule,

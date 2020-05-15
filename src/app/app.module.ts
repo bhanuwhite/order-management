@@ -15,7 +15,6 @@ import { AgmCoreModule } from '@agm/core';
   declarations: [
     AppComponent,
     HeaderComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -24,6 +23,7 @@ import { AgmCoreModule } from '@agm/core';
     HttpClientModule,
     FormsModule,
     CustomerModule,
+
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDTixkpugrGiJ3YHQlnulIW_shRuQFGnQA',
       libraries: ['places']
