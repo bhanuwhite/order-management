@@ -42,22 +42,12 @@ export class AddCustomerComponent implements OnInit {
   public postLogin(formObject): void {
     console.log(formObject);
     formObject.lat = "40.713829";
-<<<<<<< HEAD
-    formObject.lng = "40.713829";
-    if (formObject.gender == "male") {
-      console.log("I am in male");
-      formObject.image = "assets/images/unnamed.png";
-    }
-    if (formObject.gender == "female") {
-      console.log("I am in female");
-=======
     formObject.lng = "-73.989667";
     if (formObject.gender == "male") {
       formObject.image = "assets/images/unnamed.png";
     }
     if (formObject.gender == "female") {
 
->>>>>>> b8ae47f7f9593b912c0a9ec1971d587aca4a6070
       formObject.image = "assets/images/teacher-295387_960_720.png";
     }
     this.customerService.createCustomer(formObject).subscribe(data => {

@@ -51,7 +51,6 @@ export class CardViewComponent implements OnInit {
       (error) => { this.errorMsg = error });
   }
 
-<<<<<<< HEAD
   postLogin(formObject) {
     console.log(formObject);
     formObject.lat = "40.713829";
@@ -80,14 +79,15 @@ export class CardViewComponent implements OnInit {
       this.getCustomerList()
       this.form.reset();
     })
-=======
-  public deleteCustomer(customer : Customers):void{
+  }
+  public deleteCustomer(customer: Customers): void {
     console.log("I am in delete" + customer);
-       this.customerService.deleteCustomer(+customer.id).subscribe(
-         data => {this.allCustomer = this.allCustomer. filter(u =>
-          u !== customer),alert("Are you sure you want to delete this cutomer ?")}
-       );
->>>>>>> b8ae47f7f9593b912c0a9ec1971d587aca4a6070
+    this.customerService.deleteCustomer(+customer.id).subscribe(
+      data => {
+        this.allCustomer = this.allCustomer.filter(u =>
+          u !== customer), alert("Are you sure you want to delete this cutomer ?")
+      }
+    );
   }
 
 }
