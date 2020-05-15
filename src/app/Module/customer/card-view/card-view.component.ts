@@ -19,34 +19,21 @@ export class CardViewComponent implements OnInit {
     lat: '',
     lng: '',
     image: ''
-
   };
+
   @ViewChild('myForm') form: any;
   cityList: string[] = ['New York', 'Los Angeles', 'Chicago', 'Houston'];
   allCustomer: Customers[];
   errorMsg: string;
-  isUserLogin: boolean;
-  checkLogin: string;
+
 
   constructor(private customerService: CustomerService, private auth: AuthService) { }
 
   ngOnInit(): void {
     this.getCustomerList();
-    this.checkLogin = localStorage.getItem('randToken')
-    console.log(this.checkLogin)
-    if (this.checkLogin) {
-      this.isUserLogin = true
-      console.log(this.isUserLogin)
-    }
-    else {
-      this.isUserLogin = false
-      console.log(this.isUserLogin)
-    }
   }
 
   public getCustomerList(): void {
-    this.auth.checkLogin.next({ isLoggedIn: this.isUserLogin });
-    this.isUserLogin = true
     this.customerService.getCardViewCustomer().subscribe((res) => { this.allCustomer = res },
       (error) => { this.errorMsg = error });
   }

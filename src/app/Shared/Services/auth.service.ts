@@ -17,8 +17,11 @@ export class AuthService {
     return this.http.get(Constant.url + "loginUser")
   }
 
-  checkLogin = new BehaviorSubject({});
-  getCheckLogin = this.checkLogin.asObservable();
+  isUserLogin() {
+    return localStorage.getItem('randToken')
+  }
+
+
   // getUser(user): Observable<any> {
   //   return this.http.get(Constant.url + "loginUser/" + user)
   // }

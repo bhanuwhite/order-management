@@ -23,22 +23,7 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-    // this.checkLogin = localStorage.getItem('randToken')
-    this.auth.getCheckLogin.subscribe(resp => {
-
-      this.isUserLogin = resp['isLoggedIn']
-
-      // this.isUserLogin = resp['isLoggedIn']
-
-      console.log(resp, "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv")
-    })
-
-
-
-  }
-
-
+  ngOnInit(): void { }
 
   logout() {
     localStorage.removeItem('randToken');

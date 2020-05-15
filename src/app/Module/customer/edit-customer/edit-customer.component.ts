@@ -67,6 +67,7 @@ export class EditCustomerComponent implements OnInit {
 
 
   editUser(user) {
+    console.log(user)
     this.isEdit = true
     this.user = user
   }

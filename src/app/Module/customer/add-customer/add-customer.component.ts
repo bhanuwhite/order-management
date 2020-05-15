@@ -14,8 +14,14 @@ export class AddCustomerComponent implements OnInit {
   lengthOfCode = 60;
   //allUser: Customers[];
   user: any = {
-    email: '',
-    password: ''
+    name: '',
+    gender: '',
+    address: '',
+    city: '',
+    lat: '',
+    lng: '',
+    image: ''
+
   };
 
   cityList: string[] = ['New York', 'Los Angeles', 'Chicago', 'Houston'];
