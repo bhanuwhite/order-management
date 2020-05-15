@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ViewOrdersComponent } from './view-orders/view-orders.component';
 import { CustomerHeader2Component } from './customer-header2/customer-header2.component';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
+import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 
 
 const routes: Routes = [
@@ -20,20 +21,22 @@ const routes: Routes = [
       { path: 'card-view', component: CardViewComponent },
       { path: 'list-view', component: ListViewComponent },
       { path: 'map-view', component: MapViewComponent },
-      { path: 'edit-customer', component: EditCustomerComponent },
+
       { path: 'add-customer', component: AddCustomerComponent },
     ], component: CustomerHeaderComponent,
   },
   {
     path: '', children: [
+      { path: 'customer-details', component: CustomerDetailsComponent },
       { path: 'view-orders', component: ViewOrdersComponent },
+      { path: 'edit-customer', component: EditCustomerComponent },
     ], component: CustomerHeader2Component
   }
 
 ];
 
 @NgModule({
-  declarations: [CardViewComponent, CustomerHeaderComponent, ListViewComponent, MapViewComponent, AddCustomerComponent, ViewOrdersComponent, CustomerHeader2Component, EditCustomerComponent],
+  declarations: [CardViewComponent, CustomerHeaderComponent, ListViewComponent, MapViewComponent, AddCustomerComponent, ViewOrdersComponent, CustomerHeader2Component, EditCustomerComponent, CustomerDetailsComponent],
   imports: [
     CommonModule,
     FormsModule,
