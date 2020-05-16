@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class EditCustomerComponent implements OnInit {
   isValidFormSubmitted: boolean = true
+  currentUserId: any;
   isEdit: boolean = false;
   user: any = {
     name: '',
@@ -28,20 +29,11 @@ export class EditCustomerComponent implements OnInit {
   isUserLogin: boolean;
   checkLogin: string;
 
-  constructor(private customerService: CustomerService) { }
+  constructor(private customerService: CustomerService, private router: Router) { }
 
   ngOnInit(): void {
     this.getCustomerList();
-    this.checkLogin = localStorage.getItem('randToken')
-    console.log(this.checkLogin)
-    if (this.checkLogin) {
-      this.isUserLogin = true
-      console.log(this.isUserLogin)
-    }
-    else {
-      this.isUserLogin = false
-      console.log(this.isUserLogin)
-    }
+    this.editUser()
   }
 
   public getCustomerList(): void {
@@ -66,18 +58,27 @@ export class EditCustomerComponent implements OnInit {
   }
 
 
-  editUser(user) {
-    console.log(user)
-    this.isEdit = true
-    this.user = user
+  editUser() {
+    // console.log(user)
+    this.customerService.getSelectedId.subscribe(resp => {
+      console.log(resp)
+      this.currentUserId = resp['id']
+      this.user = resp
+    })
+    // this.isEdit = true
+    //  this.user = user
   }
 
-  updateUser() {
-    this.isEdit = !this.isEdit;
-    this.customerService.updateCardViewCustomer(this.user).subscribe(res => {
+  updateUser(myObj) {
+    console.log(myObj)
+    // this.isEdit = !this.isEdit;
+
+
+    this.customerService.updateCardViewCustomer(this.currentUserId, myObj).subscribe(res => {
       console.log(res)
-      this.getCustomerList()
-      this.form.reset();
+      // this.getCustomerList()
+      this.router.navigate(['customers/card-view'])
+      // this.router.navigate(['login']);
     })
   }
 

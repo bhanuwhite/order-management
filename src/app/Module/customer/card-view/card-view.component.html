@@ -3,8 +3,9 @@
         <div class="card">
             <div class="card-header bg-primary headingEdit">
                 <span>{{customer.name}}</span>
-                <span class="spanEdit"><a routerLink="/customers/edit-customer"><i class="fas fa-edit"></i></a> <i
-                        class="fas fa-trash ml-2" (click)="deleteCustomer(customer)"></i></span>
+                <span class="spanEdit"><a (click)="getCustomer(customer)" routerLink="/customers/edit-customer"><i
+                            class="fas fa-edit"></i></a> <i class="fas fa-trash ml-2"
+                        (click)="deleteCustomer(customer)"></i></span>
             </div>
             <div class="card-body row ">
                 <div class="col" style="padding-right:0;">
@@ -12,7 +13,7 @@
                 </div>
                 <div class="col" style="padding-left:0;">
                     {{customer.address}} <br>
-                    {{customer.state}}<br>
+                    {{customer.city}}<br>
                     <a routerLink="/customers/view-orders" class="aEdit"> View Orders</a>
                 </div>
 
@@ -23,4 +24,3 @@
 
 
 <h3>{{errorMsg}}</h3>
-]

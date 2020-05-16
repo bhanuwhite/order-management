@@ -23,44 +23,8 @@
   ],
   "users": [
     {
-      "name": "abhi",
-      "email": "abhi@gmail.com",
-      "password": "123456",
-      "image": "assets/images/unnamed.png",
-      "id": 1,
-      "address": "123 E Broadway",
-      "city": "Phonix",
-      "state": "Arizona",
-      "lat": 40.713829,
-      "lng": -73.989667
-    },
-    {
-      "name": "shalaj",
-      "email": "shalaj@gmail.com",
-      "password": "123456",
-      "image": "assets/images/unnamed.png",
-      "id": 2,
-      "address": "123 E Broadway",
-      "city": "Phonix",
-      "state": "Arizona",
-      "lat": 40.713829,
-      "lng": -73.989667
-    },
-    {
-      "name": "meera",
-      "email": "meera@gmail.com",
-      "password": "123456",
-      "image": "assets/images/teacher-295387_960_720.png",
-      "id": 3,
-      "address": "123 E Broadway",
-      "city": "Phonix",
-      "state": "Arizona",
-      "lat": 40.713829,
-      "lng": -73.989667
-    },
-    {
-      "name": "test2",
-      "gender": "male",
+      "name": "test",
+      "gender": "",
       "address": "hightech",
       "city": "New York",
       "lat": "40.713829",
@@ -69,7 +33,7 @@
       "id": 4
     },
     {
-      "name": "pranav",
+      "name": "pranav verma",
       "gender": "male",
       "address": "hightech",
       "city": "Los Angeles",
@@ -77,6 +41,16 @@
       "lng": "40.713829",
       "image": "assets/images/unnamed.png",
       "id": 5
+    },
+    {
+      "name": "test1",
+      "gender": "",
+      "address": "amerpait",
+      "city": "New York",
+      "lat": "40.713829",
+      "lng": "-73.989667",
+      "image": "",
+      "id": 6
     }
   ],
   "orders": [

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Constant } from "../utility/constant";
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 //import { throwError } from 'rxjs';
 
 @Injectable({
@@ -18,24 +19,24 @@ export class CustomerService {
       .pipe(catchError(this.errorHandler));
   }
 
-  updateCardViewCustomer(user): Observable<Customers[]> {
-    return this.http.put<Customers[]>(Constant.url + "users" + user.id, user)
+  updateCardViewCustomer(id: number, user): Observable<Customers[]> {
+    return this.http.put<Customers[]>(Constant.url + "users" + "/" + id, user)
   }
 
   createUser(user): Observable<Customers[]> {
     return this.http.post<Customers[]>(Constant.url + "users", user)
   }
 
-  createCustomer(customersInfo : Customers){
-    return this.http.post(Constant.url + "users",customersInfo);
+  createCustomer(customersInfo: Customers) {
+    return this.http.post(Constant.url + "users", customersInfo);
   }
-  // errorHandler(error: HttpErrorResponse){
-  //   console.log("I am in serve error");    
-  //    return throwError(error.message)
-  // }
 
-  deleteCustomer(id : number){
-    return this.http.delete<Customers[]>(Constant.url+"users"+'/'+ id);
+  selectedId = new BehaviorSubject([]);
+  getSelectedId = this.selectedId.asObservable();
+
+
+  deleteCustomer(id: number) {
+    return this.http.delete<Customers[]>(Constant.url + "users" + '/' + id);
   }
 
   errorHandler(error) {

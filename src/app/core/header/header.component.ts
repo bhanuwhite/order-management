@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
   checkLogin: string;
 
   isUserLogin: boolean = false;
-  constructor(private router: Router, private location: Location, private auth: AuthService) {
+  constructor(private router: Router, private location: Location, public auth: AuthService) {
     this.checkLogin = localStorage.getItem('randToken')
     if (this.checkLogin) {
       this.isUserLogin = true

@@ -33,6 +33,11 @@ export class CardViewComponent implements OnInit {
     this.getCustomerList();
   }
 
+  getCustomer(user) {
+    console.log(user)
+    this.customerService.selectedId.next(user);
+  }
+
   public getCustomerList(): void {
     this.customerService.getCardViewCustomer().subscribe((res) => { this.allCustomer = res },
       (error) => { this.errorMsg = error });
@@ -53,28 +58,13 @@ export class CardViewComponent implements OnInit {
     console.log(formObject);
   }
 
-  viewCustomerDetails(id:number){
-console.log("see id " + id);
-     let viewdata;
-     this.customerService.getCardViewCustomer().subscribe(data => {console.log(data)});
-  }
-
-
-  editUser(user) {
-    this.isEdit = true
-    this.user = user
-  }
-
-  updateUser() {
-    this.isEdit = !this.isEdit;
-    this.customerService.updateCardViewCustomer(this.user).subscribe(res => {
-      console.log(res)
-      this.getCustomerList()
-      this.form.reset();
-    })
+  viewCustomerDetails(id: number) {
+    console.log("see id " + id);
+    let viewdata;
+    this.customerService.getCardViewCustomer().subscribe(data => { console.log(data) });
   }
   public deleteCustomer(customer: Customers): void {
-     this.customerService.deleteCustomer(+customer.id).subscribe(
+    this.customerService.deleteCustomer(+customer.id).subscribe(
       data => {
         this.allCustomer = this.allCustomer.filter(u =>
           u !== customer), alert("Customer Record Deleted")
