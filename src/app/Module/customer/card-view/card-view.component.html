@@ -1,3 +1,10 @@
+<div class="filter-right ">
+    <form #myForm="ngForm">
+        <input type="text" name="filter" [(ngModel)]="search" #filter="ngModel" placeholder="Filter"
+            (ngModelChange)="findSearch(search)">
+    </form>
+</div>
+<br />
 <div class="row">
     <div class="col-sm-3 cardPadding" *ngFor="let customer of allCustomer">
         <div class="card">

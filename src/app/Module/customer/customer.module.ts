@@ -13,7 +13,7 @@ import { ViewOrdersComponent } from './view-orders/view-orders.component';
 import { CustomerHeader2Component } from './customer-header2/customer-header2.component';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const routes: Routes = [
   {
@@ -42,6 +42,8 @@ const routes: Routes = [
     FormsModule,
     AgmCoreModule,
     HttpClientModule,
+    NgxPaginationModule,
+
     RouterModule.forChild(routes),
   ]
 })

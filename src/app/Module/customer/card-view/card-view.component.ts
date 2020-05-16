@@ -1,3 +1,4 @@
+import { filter } from 'rxjs/operators';
 import { AuthService } from './../../../Shared/Services/auth.service';
 import { Customers } from './../../../Shared/models/customers';
 import { CustomerService } from './../../../Shared/Services/customer.service';
@@ -9,7 +10,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./card-view.component.css']
 })
 export class CardViewComponent implements OnInit {
+  page: number = 1;
   isValidFormSubmitted: boolean = true
+  config: any;
   isEdit: boolean = false;
   user: any = {
     name: '',
@@ -19,18 +22,34 @@ export class CardViewComponent implements OnInit {
     lat: '',
     lng: '',
     image: ''
+
   };
+
+  findSearch(val) {
+    console.log(val)
+  }
+
+
 
   @ViewChild('myForm') form: any;
   cityList: string[] = ['New York', 'Los Angeles', 'Chicago', 'Houston'];
   allCustomer: Customers[];
   errorMsg: string;
 
+  userFilter(value) {
+    console.log(value)
+  }
+
 
   constructor(private customerService: CustomerService, private auth: AuthService) { }
 
   ngOnInit(): void {
     this.getCustomerList();
+    // this.config = {
+    //   itemsPerPage: 5,
+    //   currentPage: 1,
+    //   totalItems: this.allCustomer.length
+    // };
   }
 
   getCustomer(user) {
@@ -38,10 +57,13 @@ export class CardViewComponent implements OnInit {
     this.customerService.selectedId.next(user);
   }
 
+
   public getCustomerList(): void {
     this.customerService.getCardViewCustomer().subscribe((res) => { this.allCustomer = res },
       (error) => { this.errorMsg = error });
   }
+
+
 
   postLogin(formObject) {
     console.log(formObject);
@@ -67,7 +89,7 @@ export class CardViewComponent implements OnInit {
     this.customerService.deleteCustomer(+customer.id).subscribe(
       data => {
         this.allCustomer = this.allCustomer.filter(u =>
-          u !== customer), alert("Customer Record Deleted")
+          u !== customer)
       }
     );
   }
