@@ -1,12 +1,15 @@
-<div class="filter-right ">
+<!-- <div class="filter-right ">
     <form #myForm="ngForm">
         <input type="text" name="filter" [(ngModel)]="search" #filter="ngModel" placeholder="Filter"
             (ngModelChange)="findSearch(search)">
     </form>
-</div>
+</div> -->
 <br />
 <div class="row">
-    <div class="col-sm-3 cardPadding" *ngFor="let customer of allCustomer">
+    <div class="col-sm-3 cardPadding" *ngFor="let customer of allCustomer | paginate: { id: 'listing_pagination',
+    itemsPerPage: 5,
+    currentPage: page,
+    totalItems: totalRecords }">
         <div class="card">
             <div class="card-header bg-primary headingEdit">
                 <span>{{customer.name}}</span>
@@ -31,3 +34,7 @@
 
 
 <h3>{{errorMsg}}</h3>
+
+
+<pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event">
+</pagination-controls>

@@ -12,7 +12,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 export class CardViewComponent implements OnInit {
   page: number = 1;
   isValidFormSubmitted: boolean = true
-  config: any;
+  totalRecords: any;
+
   isEdit: boolean = false;
   user: any = {
     name: '',
@@ -59,7 +60,10 @@ export class CardViewComponent implements OnInit {
 
 
   public getCustomerList(): void {
-    this.customerService.getCardViewCustomer().subscribe((res) => { this.allCustomer = res },
+    this.customerService.getCardViewCustomer().subscribe((res) => {
+      this.allCustomer = res
+      this.totalRecords = res.length;
+    },
       (error) => { this.errorMsg = error });
   }
 
