@@ -10,11 +10,12 @@
     currentPage: page,
     totalItems: totalRecords }">
         <div class="card">
-            <div class="card-header bg-primary headingEdit">
-                <span>{{customer.name}}</span>
-                <span class="spanEdit"><a (click)="getCustomer(customer)" routerLink="/customers/edit-customer"><i
-                            class="fas fa-edit"></i></a> <i class="fas fa-trash ml-2"
+            <div class="card-header bg-primary headingEdit">  
+                <span (click)="getDetails(customer)">{{customer.name}}</span>
+                <span class="spanEdit"><i (click)="getCustomer(customer)"
+                            class="fas fa-edit"></i> <i class="fas fa-trash ml-2"
                         (click)="deleteCustomer(customer)"></i></span>
+                        <!-- routerLink="/customers/edit-customer" -->
             </div>
             <div class="card-body row ">
                 <div class="col" style="padding-right:0;">
@@ -38,9 +39,9 @@
     totalItems: result }">
         <div class="card">
             <div class="card-header bg-primary headingEdit">
-                <span>{{customer.name}}</span>
-                <span class="spanEdit"><a (click)="getCustomer(customer)" routerLink="/customers/edit-customer"><i
-                            class="fas fa-edit"></i></a> <i class="fas fa-trash ml-2"
+                <span (click)="getDetails(customer)">{{customer.name}}</span>
+                <span class="spanEdit"><i (click)="getCustomer(customer)"
+                            class="fas fa-edit"></i><i class="fas fa-trash ml-2"
                         (click)="deleteCustomer(customer)"></i></span>
             </div>
             <div class="card-body row ">
@@ -50,7 +51,7 @@
                 <div class="col" style="padding-left:0;">
                     {{customer.address}} <br>
                     {{customer.city}}<br>
-                    <a routerLink="/customers/view-orders" class="aEdit"> View Orders</a>
+                    <a routerLink="/customers/view-orders" (click)="getOrders(customer)" class="aEdit"> View Orders</a>
                 </div>
 
             </div>

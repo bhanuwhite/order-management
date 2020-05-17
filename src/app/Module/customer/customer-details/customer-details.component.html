@@ -1,1 +1,30 @@
-<p>customer-details works!</p>
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-body row ">
+                <div class="col-sm-2" style="padding-right:0;">
+                    <img width="90" height="90" src="{{user.image}}" alt="Card image">
+                </div>
+                <div class="col-sm-10" style="padding-left:0;">
+                    <p>{{user.name}}</p>
+                    {{user.address}} <br>
+                    {{user.city}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <agm-map style="height: 400px" [latitude]="lat" [longitude]="lng">
+        <!-- <agm-marker-cluster imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m"> -->
+          <agm-marker [latitude]="setLat"[longitude]="setLng">
+          </agm-marker> 
+        <!-- </agm-marker-cluster> -->
+      </agm-map>
+
+
+</div>
+
+<!-- <div>
+    <p>name: {{user.name}}</p>
+</div> -->

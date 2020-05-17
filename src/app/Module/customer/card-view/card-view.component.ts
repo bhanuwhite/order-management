@@ -3,6 +3,7 @@ import { AuthService } from './../../../Shared/Services/auth.service';
 import { Customers } from './../../../Shared/models/customers';
 import { CustomerService } from './../../../Shared/Services/customer.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-view',
@@ -18,7 +19,6 @@ export class CardViewComponent implements OnInit {
   isEdit: boolean = false;
   search1: any;
   result: any;
-
   user: any = {
     name: '',
     gender: '',
@@ -29,6 +29,8 @@ export class CardViewComponent implements OnInit {
     image: ''
   };
 
+  constructor(private customerService: CustomerService, private auth: AuthService, private router:Router) {}
+
   ngOnInit(): void {
     this.getCustomerList();
   }
@@ -38,8 +40,8 @@ export class CardViewComponent implements OnInit {
     this.result = this.allCustomer.filter(all => {
       return all.name.toLowerCase().includes(this.searchText);
     })
-
   }
+
   @ViewChild('myForm') form: any;
   cityList: string[] = ['New York', 'Los Angeles', 'Chicago', 'Houston'];
   allCustomer: Customers[];
@@ -47,18 +49,22 @@ export class CardViewComponent implements OnInit {
 
   userFilter(value) {
     console.log(value)
+  }  
+
+  public getCustomer(user):void  {
+    this.router.navigate(['/customers/edit-customer']);
+    this.customerService.selectedId.next(user);   
   }
 
-
-  constructor(private customerService: CustomerService, private auth: AuthService) { }
-
-
-
-  getCustomer(user) {
-    console.log(user)
-    this.customerService.selectedId.next(user);
+  public getDetails(user):void  {
+    this.router.navigate(['/customers/customer-details']);
+    this.customerService.selectedId.next(user);   
   }
 
+  public getOrders(user):void  {
+    //this.router.navigate(['/customers/edit-customer']);
+    this.customerService.selectedId.next(user);   
+  }
 
   public getCustomerList(): void {
     this.customerService.getCardViewCustomer().subscribe((res) => {
@@ -68,9 +74,7 @@ export class CardViewComponent implements OnInit {
       (error) => { this.errorMsg = error });
   }
 
-
-
-  postLogin(formObject) {
+  public postLogin(formObject):void {
     console.log(formObject);
     formObject.lat = "40.713829";
     formObject.lng = "40.713829";
@@ -85,11 +89,10 @@ export class CardViewComponent implements OnInit {
     console.log(formObject);
   }
 
-  viewCustomerDetails(id: number) {
-    console.log("see id " + id);
-    let viewdata;
-    this.customerService.getCardViewCustomer().subscribe(data => { console.log(data) });
+  public viewCustomerDetails(id: number): void {
+       this.customerService.getCardViewCustomer().subscribe(data => { console.log(data) });
   }
+
   public deleteCustomer(customer: Customers): void {
     this.customerService.deleteCustomer(+customer.id).subscribe(
       data => {

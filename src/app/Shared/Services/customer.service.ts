@@ -5,8 +5,6 @@ import { Constant } from "../utility/constant";
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-//import { throwError } from 'rxjs';
-
 @Injectable({
   providedIn: 'root'
 })

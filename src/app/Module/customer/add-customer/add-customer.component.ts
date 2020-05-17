@@ -38,8 +38,8 @@ export class AddCustomerComponent implements OnInit {
     if (formObject.image) {
       formObject.image = formObject.image.replace("C:\\fakepath\\", 'assets/images/');
     }
-    formObject.lat = "40.713829";
-    formObject.lng = "-73.989667";
+    formObject.lat = "33.4484";
+    formObject.lng = "112.0740";
     if (formObject.gender == "male") {
       formObject.image = "assets/images/unnamed.png";
     }
