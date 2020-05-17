@@ -1,7 +1,9 @@
-import { Customers } from '../../../Shared/models/customers';
-import { CustomerService } from '../../../Shared/Services/customer.service';
+import { NotificationService } from './../../../Shared/Services/notification.service';
+import { Customers } from 'src/app/Shared/models/customers';
+import { CustomerService } from 'src/app/Shared/Services/customer.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { Constant } from '../../../Shared/utility/constant';
 
 @Component({
   selector: 'app-edit-customer',
@@ -23,62 +25,34 @@ export class EditCustomerComponent implements OnInit {
 
   };
   @ViewChild('myForm') form: any;
-  cityList: string[] = ['New York', 'Los Angeles', 'Chicago', 'Houston'];
+  cityList: string[] = Constant.city
   allCustomer: Customers[];
   errorMsg: string;
   isUserLogin: boolean;
   checkLogin: string;
 
-  constructor(private customerService: CustomerService, private router: Router) { }
+  constructor(
+    private customerService: CustomerService,
+    private router: Router,
+    private notifyService: NotificationService
+  ) { }
 
   ngOnInit(): void {
-    this.getCustomerList();
     this.editUser()
   }
 
-  public getCustomerList(): void {
-    this.isUserLogin = true
-    this.customerService.getCardViewCustomer().subscribe((res) => { this.allCustomer = res },
-      (error) => { this.errorMsg = error });
-  }
-
-  postLogin(formObject) {
-    console.log(formObject);
-    formObject.lat = "40.713829";
-    formObject.lng = "40.713829";
-    if (formObject.gender == "male") {
-      console.log("I am in male");
-      formObject.image = "assets/images/unnamed.png";
-    }
-    if (formObject.gender == "female") {
-      console.log("I am in female");
-      formObject.image = "assets/images/teacher-295387_960_720.png";
-    }
-    console.log(formObject);
-  }
-
-
+  // function for edit customer
   editUser() {
-    // console.log(user)
     this.customerService.getSelectedId.subscribe(resp => {
-      console.log(resp)
       this.currentUserId = resp['id']
       this.user = resp
     })
-    // this.isEdit = true
-    //  this.user = user
   }
-
+  // function for update customer
   updateUser(myObj) {
-    console.log(myObj)
-    // this.isEdit = !this.isEdit;
-
-
     this.customerService.updateCardViewCustomer(this.currentUserId, myObj).subscribe(res => {
-      console.log(res)
-      // this.getCustomerList()
+      this.notifyService.showSuccess("Customer Updated Successfully !!", "Notification");
       this.router.navigate(['customers/card-view'])
-      // this.router.navigate(['login']);
     })
   }
 

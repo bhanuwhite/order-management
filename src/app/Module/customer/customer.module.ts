@@ -1,5 +1,5 @@
 import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardViewComponent } from './card-view/card-view.component';
 import { Routes, RouterModule } from '@angular/router';
@@ -15,6 +15,8 @@ import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { ToastrModule } from 'ngx-toastr';
 const routes: Routes = [
   {
     path: '', children: [
@@ -44,7 +46,10 @@ const routes: Routes = [
     HttpClientModule,
     NgxPaginationModule,
     TypeaheadModule,
+    NgxSpinnerModule,
+    ToastrModule.forRoot(),
     RouterModule.forChild(routes),
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CustomerModule { }

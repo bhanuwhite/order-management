@@ -70,3 +70,5 @@
 <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"
     *ngIf="searchText?.length>0">
 </pagination-controls>
+
+<ngx-spinner [fullScreen]="true" type="ball-spin-clockwise" size="medium"></ngx-spinner>
