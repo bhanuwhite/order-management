@@ -7,16 +7,8 @@
 
         <div class="form-group">
             <label for="exampleInputEmail1">Image</label>
-            <input type="file" (change)="onSelectFile($event)" class=" form-control" name="image"
-                [(ngModel)]="user.image" #image="ngModel" multiple required>
+            <input type="file" (change)="onSelectFile($event)" class=" form-control" name="image" multiple required>
         </div>
-
-        <div class="form-group">
-            <label for="exampleInputEmail1" style="margin-right: 10px">Gender</label>
-            <input type="radio" value="male" name="gender" ngModel> Male
-            <input type="radio" value="female" name="gender" ngModel> Female
-        </div>
-
 
         <div class="form-group">
             <label for="exampleInputEmail1">Address</label>
@@ -41,11 +33,8 @@
             <input type="text" class="form-control" name="image" [(ngModel)]="user.image" #image="ngModel" required>
         </div>
 
-        <!-- <div class="form-group">
-        <label for="exampleInputPassword1">Image</label>
-        <input type="file" class="form-control" name="image" [(ngModel)]="user.image" #image="ngModel" required>
-    </div> -->
 
-        <button type="button" class="btn btn-primary" (click)="postLogin(myForm.value)">Submit</button>
+
+        <button type="button" class="btn btn-primary" (click)="addCustomer(myForm.value)">Submit</button>
     </div>
 </form>

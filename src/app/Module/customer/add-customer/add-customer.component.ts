@@ -1,7 +1,9 @@
+import { NotificationService } from './../../../Shared/Services/notification.service';
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from 'src/app/Shared/Services/customer.service';
 import { Router } from '@angular/router';
 import { Constant } from '../../../Shared/utility/constant';
+
 @Component({
   selector: 'app-add-customer',
   templateUrl: './add-customer.component.html',
@@ -10,10 +12,8 @@ import { Constant } from '../../../Shared/utility/constant';
 export class AddCustomerComponent implements OnInit {
   isValidFormSubmitted: boolean = true;
   urls: File[];
-
-  // @ViewChild('myForm') form: any;
-
-
+  uploadImage: File[];
+  cityList: string[] = Constant.city;
   user: any = {
     name: '',
     gender: '',
@@ -22,32 +22,33 @@ export class AddCustomerComponent implements OnInit {
     lat: '',
     lng: '',
     image: ''
-
   };
+  constructor(
+    private customerService: CustomerService,
+    private router: Router,
+    private notifyService: NotificationService
+  ) { }
 
-  cityList: string[] = ['New York', 'Los Angeles', 'Chicago', 'Houston'];
-  constructor(private customerService: CustomerService, private router: Router) { }
+  ngOnInit(): void { }
 
-  ngOnInit(): void {
-
-  }
-
-  public postLogin(formObject): void {
+  public addCustomer(formObject): void {
     console.log(formObject);
     console.log(formObject.image, typeof (formObject.image))
-    if (formObject.image) {
-      formObject.image = formObject.image.replace("C:\\fakepath\\", 'assets/images/');
-    }
+    // if (formObject.image) {
+    //   formObject.image = formObject.image.replace("C:\\fakepath\\", 'assets/images/');
+    // }
+    formObject.image = this.uploadImage;
     formObject.lat = "40.713829";
     formObject.lng = "-73.989667";
-    if (formObject.gender == "male") {
-      formObject.image = "assets/images/unnamed.png";
-    }
-    if (formObject.gender == "female") {
+    // if (formObject.gender == "male") {
+    //   formObject.image = "assets/images/unnamed.png";
+    // }
+    // if (formObject.gender == "female") {
 
-      formObject.image = "assets/images/teacher-295387_960_720.png";
-    }
+    //   formObject.image = "assets/images/teacher-295387_960_720.png";
+    // }
     this.customerService.createCustomer(formObject).subscribe(data => {
+      this.notifyService.showSuccess("Customer Added Successfully !!", "Notification");
       this.router.navigate(['customers/card-view'])
     });
   }
@@ -66,10 +67,11 @@ export class AddCustomerComponent implements OnInit {
             var reader = new FileReader();
             reader.readAsDataURL(event.target.files[i]);
             reader.onload = (event: any) => {
-              //  console.log(event)
+              console.log(event)
               if (event.loaded < 3000000) {
-                this.urls.push(event.target.result);
-                console.log(this.urls)
+                this.uploadImage = event.target.result
+                // this.urls.push(event.target.result);
+                // console.log(this.urls)
               }
               else {
                 this.failFileSize();
