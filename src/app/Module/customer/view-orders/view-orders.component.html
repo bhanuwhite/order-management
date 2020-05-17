@@ -1,32 +1,27 @@
 <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Orders for Ted James</th>
-        
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Basketball</td>
-        <td>$7.99</td>
-      
-      </tr>
-      <tr>
-        <td>Shoes</td>
-        <td>$199.9</td>
-        
-      </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-              <td > Total Price:  </td>
-              <td>Total</td>
-    
-            </tr>
-          </tfoot>
-  </table>
-  <!-- <div *ngFor p of productNames>
-    <p> see order details </p>
-    <p>{{p}}</p>
-  </div> -->
+  <thead>
+    <tr>
+      <th>Orders for Ted James</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of products">
+      <td>{{p.product_name}}</td>
+      <td style="text-align: right;">{{p.price}} <i class="fa">&#xf156;</i></td>
+
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td> Total Price: </td>
+      <td style="text-align: right;">{{priceTotal}} <i class="fa">&#xf156;</i> </td>
+
+    </tr>
+  </tfoot>
+</table>
+<!-- <div>
+  <p> see order details </p>
+  <p></p>
+</div> -->

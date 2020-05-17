@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Orders } from 'src/app/Shared/models/orders';
+import { Orders, Product } from 'src/app/Shared/models/orders';
 import { Customers } from 'src/app/Shared/models/customers';
 import { CustomerService } from 'src/app/Shared/Services/customer.service';
 import { OrdersService } from 'src/app/Shared/Services/orders.service';
-
 
 @Component({
   selector: 'app-view-orders',
@@ -14,13 +13,13 @@ export class ViewOrdersComponent implements OnInit {
   currentUserId: any;
   orders: Orders[] = [];
   myID: number = 2;
-  products: any = [];
-  productNames: any = [];
-  productPrice: any = [];
+  products: Product[] = [];
+  priceTotal: number = 0;
+  productPrice: number;
   constructor(private ordersService: OrdersService, private customersService: CustomerService) { }
 
   ngOnInit(): void {
-    this.getCustomerOrders();
+    this.getCustomerDetails();
   }
 
   public getCustomerDetails(): void {
@@ -34,10 +33,13 @@ export class ViewOrdersComponent implements OnInit {
 
   public getCustomerOrders(): void {
     this.ordersService.getCustomerOrders().subscribe(resp => {
-        this.orders = resp.filter(r => { return r["userId"] == 2 })
-        console.log("I am in orders" + this.orders);
-      console.log("I am in orders" + this.products);  
-     });
+      this.orders = resp.filter(r => { return r["userId"] == 2})
+      this.products = this.orders[0].products;
+      for (let i = 0; i < this.products.length; i++) {
+        this.productPrice = +this.products[i].price;
+        this.priceTotal = this.priceTotal + this.productPrice;
+      };
+    });
   }
 
 }

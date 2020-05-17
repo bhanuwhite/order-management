@@ -24,7 +24,7 @@
                 <div class="col" style="padding-left:0;">
                     {{customer.address}} <br>
                     {{customer.city}}<br>
-                    <a routerLink="/customers/view-orders" class="aEdit"> View Orders</a>
+                    <a routerLink="/customers/view-orders" (click)="getOrders(customer)" class="aEdit"> View Orders</a>
                 </div>
 
             </div>
