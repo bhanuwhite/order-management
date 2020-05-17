@@ -25,7 +25,7 @@ export class CardViewComponent implements OnInit {
 
   };
 
-  findSearch(val) {
+  public findSearch(val) {
     console.log(val)
   }
 

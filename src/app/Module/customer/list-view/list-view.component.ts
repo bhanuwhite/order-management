@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Customers } from 'src/app/Shared/models/customers';
-import { CustomerService } from 'src/app/Shared/Services/customer.service';
+import { Customers } from '../../../Shared/models/customers';
+import { CustomerService } from '../../../Shared/Services/customer.service';
 
 @Component({
   selector: 'app-list-view',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerService } from 'src/app/Shared/Services/customer.service';
+import { CustomerService } from '../../../Shared/Services/customer.service';
 import { Router } from '@angular/router';
 import { Constant } from '../../../Shared/utility/constant';
 @Component({
