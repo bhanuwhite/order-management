@@ -23,7 +23,7 @@
   ],
   "users": [
     {
-      "name": "test",
+      "name": "test123",
       "gender": "",
       "address": "hightech",
       "city": "New York",
@@ -91,16 +91,6 @@
       "lat": "40.713829",
       "lng": "-73.989667",
       "id": 14
-    },
-    {
-      "name": "akansha",
-      "image": "assets/images/teacher-295387_960_720.png",
-      "gender": "female",
-      "address": "hightech",
-      "city": "New York",
-      "lat": "40.713829",
-      "lng": "-73.989667",
-      "id": 15
     }
   ],
   "orders": [

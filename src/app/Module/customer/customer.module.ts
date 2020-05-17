@@ -14,7 +14,7 @@ import { CustomerHeader2Component } from './customer-header2/customer-header2.co
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 const routes: Routes = [
   {
     path: '', children: [
@@ -43,7 +43,7 @@ const routes: Routes = [
     AgmCoreModule,
     HttpClientModule,
     NgxPaginationModule,
-
+    TypeaheadModule,
     RouterModule.forChild(routes),
   ]
 })

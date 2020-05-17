@@ -12,8 +12,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 export class CardViewComponent implements OnInit {
   page: number = 1;
   isValidFormSubmitted: boolean = true
-  config: any;
+  totalRecords: any;
+  selected: string;
+  searchText: any;
   isEdit: boolean = false;
+  search1: any;
+  result: any;
+
   user: any = {
     name: '',
     gender: '',
@@ -22,15 +27,19 @@ export class CardViewComponent implements OnInit {
     lat: '',
     lng: '',
     image: ''
-
   };
 
-  public findSearch(val) {
-    console.log(val)
+  ngOnInit(): void {
+    this.getCustomerList();
   }
 
+  findSearch(val) {
+    this.searchText = val.toLowerCase();
+    this.result = this.allCustomer.filter(all => {
+      return all.name.toLowerCase().includes(this.searchText);
+    })
 
-
+  }
   @ViewChild('myForm') form: any;
   cityList: string[] = ['New York', 'Los Angeles', 'Chicago', 'Houston'];
   allCustomer: Customers[];
@@ -43,14 +52,7 @@ export class CardViewComponent implements OnInit {
 
   constructor(private customerService: CustomerService, private auth: AuthService) { }
 
-  ngOnInit(): void {
-    this.getCustomerList();
-    // this.config = {
-    //   itemsPerPage: 5,
-    //   currentPage: 1,
-    //   totalItems: this.allCustomer.length
-    // };
-  }
+
 
   getCustomer(user) {
     console.log(user)
@@ -59,7 +61,10 @@ export class CardViewComponent implements OnInit {
 
 
   public getCustomerList(): void {
-    this.customerService.getCardViewCustomer().subscribe((res) => { this.allCustomer = res },
+    this.customerService.getCardViewCustomer().subscribe((res) => {
+      this.allCustomer = res
+      this.totalRecords = res.length;
+    },
       (error) => { this.errorMsg = error });
   }
 
