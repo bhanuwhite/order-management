@@ -10,12 +10,10 @@
     currentPage: page,
     totalItems: totalRecords }">
         <div class="card">
-            <div class="card-header bg-primary headingEdit">  
+            <div class="card-header bg-primary headingEdit">
                 <span (click)="getDetails(customer)">{{customer.name}}</span>
-                <span class="spanEdit"><i (click)="getCustomer(customer)"
-                            class="fas fa-edit"></i> <i class="fas fa-trash ml-2"
-                        (click)="deleteCustomer(customer)"></i></span>
-                        <!-- routerLink="/customers/edit-customer" -->
+                <span class="spanEdit"><i (click)="getCustomer(customer)" class="fas fa-edit"></i> <i
+                        class="fas fa-trash ml-2" (click)="deleteCustomer(customer)"></i></span>
             </div>
             <div class="card-body row ">
                 <div class="col" style="padding-right:0;">
@@ -40,9 +38,8 @@
         <div class="card">
             <div class="card-header bg-primary headingEdit">
                 <span (click)="getDetails(customer)">{{customer.name}}</span>
-                <span class="spanEdit"><i (click)="getCustomer(customer)"
-                            class="fas fa-edit"></i><i class="fas fa-trash ml-2"
-                        (click)="deleteCustomer(customer)"></i></span>
+                <span class="spanEdit"><i (click)="getCustomer(customer)" class="fas fa-edit"></i><i
+                        class="fas fa-trash ml-2" (click)="deleteCustomer(customer)"></i></span>
             </div>
             <div class="card-body row ">
                 <div class="col" style="padding-right:0;">

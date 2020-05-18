@@ -34,26 +34,14 @@ export class AddCustomerComponent implements OnInit {
   public addCustomer(formObject): void {
     console.log(formObject);
     console.log(formObject.image, typeof (formObject.image))
-    // if (formObject.image) {
-    //   formObject.image = formObject.image.replace("C:\\fakepath\\", 'assets/images/');
-    // }
     formObject.image = this.uploadImage;
-    formObject.lat = "40.713829";
-    formObject.lng = "-73.989667";
-    // if (formObject.gender == "male") {
-    //   formObject.image = "assets/images/unnamed.png";
-    // }
-    // if (formObject.gender == "female") {
-
-    //   formObject.image = "assets/images/teacher-295387_960_720.png";
-    // }
-    this.customerService.createCustomer(formObject).subscribe(data => {
+    formObject.lat = "33.4484";
+    formObject.lng = "112.0740";
+      this.customerService.createCustomer(formObject).subscribe(data => {
       this.notifyService.showSuccess("Customer Added Successfully !!", "Notification");
       this.router.navigate(['customers/card-view'])
     });
   }
-
-
 
   // on Change FileUpload Function & validating the file type and file size
   public onSelectFile(event): any {
@@ -70,9 +58,7 @@ export class AddCustomerComponent implements OnInit {
               console.log(event)
               if (event.loaded < 3000000) {
                 this.uploadImage = event.target.result
-                // this.urls.push(event.target.result);
-                // console.log(this.urls)
-              }
+                              }
               else {
                 this.failFileSize();
               }

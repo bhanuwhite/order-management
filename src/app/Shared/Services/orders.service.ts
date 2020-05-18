@@ -11,7 +11,7 @@ export class OrdersService {
 
   constructor(private http: HttpClient) { }
 
-  getCustomerOrders(): Observable<Orders[]> {
+  public getCustomerOrders(): Observable<Orders[]> {
         return this.http.get<Orders[]>(Constant.url + "orders");
   }
 

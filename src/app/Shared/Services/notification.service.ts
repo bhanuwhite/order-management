@@ -6,14 +6,14 @@ import { ToastrService } from 'ngx-toastr';
 export class NotificationService {
   constructor(private toastr: ToastrService) { }
 
-  showSuccess(message, title) {
+  public showSuccess(message, title) {
     this.toastr.success(message, title, {
       timeOut: 3000,
       positionClass: 'toast-top-right'
     })
   }
 
-  showFail(message, title) {
+  public showFail(message, title) {
     this.toastr.error(message, title, {
       timeOut: 3000,
       positionClass: 'toast-top-right'

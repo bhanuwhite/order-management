@@ -10,19 +10,16 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  createLogin(user): Observable<any> {
+  public createLogin(user): Observable<any> {
     return this.http.post(Constant.url + "loginUser", user)
   }
-  getAllUser(): Observable<any> {
+  
+  public getAllUser(): Observable<any> {
     return this.http.get(Constant.url + "loginUser")
   }
 
-  isUserLogin() {
+  public isUserLogin() {
     return localStorage.getItem('randToken')
   }
 
-
-  // getUser(user): Observable<any> {
-  //   return this.http.get(Constant.url + "loginUser/" + user)
-  // }
 }

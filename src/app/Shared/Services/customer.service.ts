@@ -12,20 +12,20 @@ export class CustomerService {
 
   constructor(private http: HttpClient) { }
 
-  getCardViewCustomer(): Observable<Customers[]> {
+ public  getCardViewCustomer(): Observable<Customers[]> {
     return this.http.get<Customers[]>(Constant.url + "users")
       .pipe(catchError(this.errorHandler));
   }
 
-  updateCardViewCustomer(id: number, user): Observable<Customers[]> {
+  public updateCardViewCustomer(id: number, user): Observable<Customers[]> {
     return this.http.put<Customers[]>(Constant.url + "users" + "/" + id, user)
   }
 
-  createUser(user): Observable<Customers[]> {
+  public createUser(user): Observable<Customers[]> {
     return this.http.post<Customers[]>(Constant.url + "users", user)
   }
 
-  createCustomer(customersInfo: Customers) {
+  public createCustomer(customersInfo: Customers) {
     return this.http.post(Constant.url + "users", customersInfo);
   }
 
@@ -33,11 +33,11 @@ export class CustomerService {
   getSelectedId = this.selectedId.asObservable();
 
 
-  deleteCustomer(id: number) {
+  public deleteCustomer(id: number) {
     return this.http.delete<Customers[]>(Constant.url + "users" + '/' + id);
   }
 
-  errorHandler(error) {
+  public errorHandler(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
       // client-side error

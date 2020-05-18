@@ -7,8 +7,6 @@ import { Router } from '@angular/router';
 import { Constant } from '../../../Shared/utility/constant';
 import { NgxSpinnerService } from "ngx-spinner";
 
-
-
 @Component({
   selector: 'app-card-view',
   templateUrl: './card-view.component.html',
@@ -45,25 +43,18 @@ export class CardViewComponent implements OnInit {
     this.getCustomerList();
   }
 
-
-
-  userFilter(value) {
-    console.log(value)
-  }  
-
   public getCustomer(user):void  {
     this.router.navigate(['/customers/edit-customer']);
     this.customerService.selectedId.next(user);   
   }
-
+// fuction for customer details 
   public getDetails(user):void  {
     this.router.navigate(['/customers/customer-details']);
     this.customerService.selectedId.next(user);   
   }
-
+//fuction for Orders
   public getOrders(user):void  {
-    //this.router.navigate(['/customers/edit-customer']);
-    this.customerService.selectedId.next(user);   
+      this.customerService.selectedId.next(user);   
   }   
 
   // function for customer list
@@ -76,31 +67,16 @@ export class CardViewComponent implements OnInit {
     },
       (error) => { this.errorMsg = error });
   }
-
-  // function for login
-  postLogin(formObject) {
-    console.log(formObject);
-    // formObject.lat = "40.713829";
-    // formObject.lng = "40.713829";
-    // if (formObject.gender == "male") {
-    //   console.log("I am in male");
-    //   formObject.image = "assets/images/unnamed.png";
-    // }
-    // if (formObject.gender == "female") {
-    //   console.log("I am in female");
-    //   formObject.image = "assets/images/teacher-295387_960_720.png";
-    // }
-    // console.log(formObject);
-  }
+ 
   // function for customer details
   viewCustomerDetails(id: number) {
     this.spinner.show();
     let viewdata;
     this.customerService.getCardViewCustomer().subscribe(data => {
-      this.spinner.hide();
-      console.log(data)
+      this.spinner.hide();      
     });
   }
+
   // function for delete customer
   public deleteCustomer(customer: Customers): void {
     this.spinner.show();
@@ -121,7 +97,5 @@ export class CardViewComponent implements OnInit {
       return all.name.toLowerCase().includes(this.searchText);
     })
   }
-
-
 
 }

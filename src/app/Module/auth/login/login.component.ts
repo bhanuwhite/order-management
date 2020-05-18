@@ -25,30 +25,24 @@ export class LoginComponent implements OnInit {
 
   }
 
-  postLogin(formObject) {
+  public postLogin(formObject):void {
     this.auth.getAllUser().subscribe(res => {
       this.allUser = res
       this.allUser.filter(res => {
         if (res.email == this.user.email && res.password == this.user.password) {
-          console.log("login")
           this.makeRandom(this.lengthOfCode, this.possible);
           this.form.reset();
-          this.router.navigate(['customers/card-view'])
+          this.router.navigate(['customers/card-view']);
         } else { }
       })
     })
   }
 
-  makeRandom(lengthOfCode: number, possible: string) {
+  public makeRandom(lengthOfCode: number, possible: string):void {
     let text = "";
     for (let i = 0; i < lengthOfCode; i++) {
       text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
-    console.log(text)
-    localStorage.setItem('randToken', JSON.stringify(text));
+      localStorage.setItem('randToken', JSON.stringify(text));
   }
-
-
-
-
 }

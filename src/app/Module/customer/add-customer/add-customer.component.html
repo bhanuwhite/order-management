@@ -22,7 +22,6 @@
                 <option disabled>Select City</option>
                 <option value={{c}} *ngFor="let c of cityList">{{c}}</option>
             </select>
-
         </div>
 
         <div style="display: none;">
@@ -33,8 +32,7 @@
             <input type="text" class="form-control" name="image" [(ngModel)]="user.image" #image="ngModel" required>
         </div>
 
-
-
         <button type="button" class="btn btn-primary" (click)="addCustomer(myForm.value)">Submit</button>
+    
     </div>
 </form>

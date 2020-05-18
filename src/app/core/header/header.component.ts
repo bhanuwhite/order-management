@@ -2,7 +2,6 @@ import { AuthService } from './../../Shared/Services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -15,7 +14,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void { }
 
   // function for logout
-  logout() {
+  public logout():void {
     localStorage.removeItem('randToken');
     this.router.navigate(['login']);
   }

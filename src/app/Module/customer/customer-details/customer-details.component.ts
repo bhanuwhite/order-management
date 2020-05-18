@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CustomerService } from 'src/app/Shared/Services/customer.service';
 import { Customers } from 'src/app/Shared/models/customers';
-import { filter } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-customer-details',
@@ -23,8 +23,9 @@ export class CustomerDetailsComponent implements OnInit {
     lat: '',
     lng: '',
     image: ''
-
   };
+  userCustomer: Customers [];
+
   @ViewChild('myForm') form: any;
 
   constructor(private customerService: CustomerService,) { }
@@ -37,6 +38,7 @@ export class CustomerDetailsComponent implements OnInit {
     this.customerService.getSelectedId.subscribe(resp => {      
       this.currentUserId = resp['id'],
         this.user = resp;   
+        this.userCustomer = resp;
     });
     this.setLat=this.user.lat;
     this.setLng=this.user.lng;      
@@ -44,14 +46,5 @@ export class CustomerDetailsComponent implements OnInit {
 
   
 
-  // public getMyresturantDetails(): any {
-  //   let id = this.seeClickValue;
-  //   this.display = true;
-  //   this.resturantService.getData().subscribe(data => {
-  //     this.result = data["restaurants"].filter(function (r) {
-  //       return r["id"] == id;
-  //     })
-  //   });
-  // }
 
 }
