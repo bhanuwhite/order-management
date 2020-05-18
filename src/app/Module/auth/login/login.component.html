@@ -25,8 +25,17 @@
                         required>
                     <div *ngIf="(password.invalid ) && (password.dirty || password.touched || !isValidFormSubmitted)"
                         class="error">
-                        <div *ngIf="password['errors'].required">password is required</div>
-                        <div *ngIf="password['errors'].pattern">password is not valid</div>
+                        <div *ngIf="password['errors'].required">password is required</div>                        
+                        <div *ngIf="password['errors'].pattern && !password.touched">
+                            password is not valid
+                            <!-- <div class="alert alert-danger alert-dismissible fade show">
+                                <strong>Error!</strong> Incorrect Password
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            </div> -->
+
+
+
+                        </div>
                     </div>
                 </div>
 
@@ -34,4 +43,5 @@
             </div>
         </div>
     </div> 
+    {{user.password}}
 </form>

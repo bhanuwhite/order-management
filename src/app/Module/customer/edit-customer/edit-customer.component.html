@@ -6,8 +6,16 @@
         </div>
 
         <div class="form-group">
+            
+            <!-- <img *ngFor="let url of images  | async" [src]='url' height="150" alt="Preview Image" width="200px" style="margin: 3px;"> <br/> -->
+            <img *ngIf="!isEdit" src="{{user.image}}" height="150" alt="Preview Image" width="200px" style="margin: 3px; border: 1px solid back"> <br/>
+            <img *ngIf="isEdit" src="{{images}}" height="150" alt="Preview Image" width="200px" style="margin: 3px; border: 1px solid back"> <br/>
+          
+          </div>
+
+        <div class="form-group">
             <label for="exampleInputEmail1">Image</label>
-            <input type="file" (change)="onSelectFile($event)" class=" form-control" name="image" multiple required>
+            <input type="file" (change)="onSelectFile($event)" class=" form-control" name="image" value ="Change Image" multiple required>
         </div>
 
         <div class="form-group">
