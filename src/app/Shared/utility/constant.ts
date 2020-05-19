@@ -4,5 +4,7 @@ export namespace Constant {
     export const imagePNG = "image/png"
     export const imageJPEG = "image/jpeg"
     export const city = ['New York', 'California', 'Chicago', 'Houston'];
-    export const googleKey = "AIzaSyDTixkpugrGiJ3YHQlnulIW_shRuQFGnQA";
+    export const googleKey = "AIzaSyBomiANWKrePMu1RUNhyrUonTOWvbedY9E";
+    export const mapAPI="https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input="
+    export const mapPara="&inputtype=textquery&fields=formatted_address,name,geometry&key="
 }
