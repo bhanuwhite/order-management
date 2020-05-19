@@ -16,6 +16,8 @@ export class EditCustomerComponent implements OnInit {
   urls: File[];
   uploadImage: File[];
   isEdit: boolean = false;
+  images:string;
+
   user: any = {
     name: '',
     gender: '',
@@ -47,12 +49,20 @@ export class EditCustomerComponent implements OnInit {
   editUser() {
     this.customerService.getSelectedId.subscribe(resp => {
       this.currentUserId = resp['id']
-      this.user = resp
-    })
+      this.user = resp;
+      //this.images=this.user.image;
+     // console.log( "this.user.image "+this.user.image);
+      // "this.images= "+this.images+
+      })
   }
   // function for update customer
   updateUser(myObj) {
-    myObj.image = this.uploadImage;
+    if (this.isEdit) {
+      myObj.image = this.uploadImage;
+        }
+    else {
+      myObj.image = this.user.image;
+    }
     this.customerService.updateCardViewCustomer(this.currentUserId, myObj).subscribe(res => {
       this.notifyService.showSuccess("Customer Updated Successfully !!", "Notification");
       this.router.navigate(['customers/card-view'])
@@ -61,8 +71,8 @@ export class EditCustomerComponent implements OnInit {
 
   // on Change FileUpload Function & validating the file type and file size
   public onSelectFile(event): any {
-    console.log(event)
-    this.urls = [];
+    
+     this.urls = [];
     if (event.target.files) {
       for (let i = 0; i < event.target.files.length; i++) {
         if (event.target.files[i]) {
@@ -71,24 +81,26 @@ export class EditCustomerComponent implements OnInit {
             var reader = new FileReader();
             reader.readAsDataURL(event.target.files[i]);
             reader.onload = (event: any) => {
-              console.log(event)
-              if (event.loaded < 3000000) {
-                this.uploadImage = event.target.result
-                            }
+                            if (event.loaded < 3000000) {
+                              this.isEdit = true;
+                             // this.images.push(event.target.result);
+                this.uploadImage = event.target.result;
+                this.images = this.uploadImage.toString();
+              }
               else {
-                
+
               }
             }
           }
           else {
-           
+
           }
         }
       }
     }
   }
   failFileSize() {
-   
+
   }
 
 

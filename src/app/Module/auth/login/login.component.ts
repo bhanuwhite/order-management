@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
           this.makeRandom(this.lengthOfCode, this.possible);
           this.form.reset();
           this.router.navigate(['customers/card-view']);
-        } else { }
+        }        
       })
     })
   }
