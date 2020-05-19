@@ -12,38 +12,40 @@ import { Router } from '@angular/router';
 })
 export class ListViewComponent implements OnInit {
 
-  listCustomer:Customers[];
+  listCustomer: Customers[];
   errorMsg: string;
   totalRecords: number;
 
-  constructor(private customerService: CustomerService, 
-    private notifyService:NotificationService,
+  constructor(private customerService: CustomerService,
+    private notifyService: NotificationService,
     private spinner: NgxSpinnerService,
-    private router:Router) { }
+    private router: Router) { }
 
   ngOnInit(): void {
     this.getCustomerList();
-  }    
+  }
   // funtion to get all customers
-   public getCustomerList():void {
+  public getCustomerList(): void {
     this.customerService.getCardViewCustomer().subscribe(res => {
       this.spinner.hide();
-            this.listCustomer = res;
-            this.totalRecords = res.length;
-          },
-            (error) => { this.errorMsg = error });
+      this.listCustomer = res;
+      this.totalRecords = res.length;
+    },
+      (error) => { this.errorMsg = error });
   }
- // funtion for delete 
-  public deleteCustomer(customer : Customers):void{
-      this.customerService.deleteCustomer(+customer.id).subscribe(
-         data => {this.listCustomer = this.listCustomer. filter(u =>
-          u !== customer), 
-          this.notifyService.showFail("Customer Deleted Successfully !!", "Notification");}
-       );
+  // funtion for delete 
+  public deleteCustomer(customer: Customers): void {
+    this.customerService.deleteCustomer(+customer.id).subscribe(
+      data => {
+      this.listCustomer = this.listCustomer.filter(u =>
+        u !== customer),
+        this.notifyService.showFail("Customer Deleted Successfully !!", "Notification");
+      }
+    );
   }
   // function to go to edit
-  public getCustomer(user):void  {
+  public getCustomer(user): void {
     this.router.navigate(['/customers/edit-customer']);
-    this.customerService.selectedId.next(user);   
+    this.customerService.selectedId.next(user);
   }
 }
