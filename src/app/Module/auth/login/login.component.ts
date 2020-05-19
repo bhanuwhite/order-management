@@ -30,33 +30,44 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void { }
 
   // function for login
-  public postLogin(): void {
+  public onSubmit(formObject): void {
+    console.log(formObject)
     try {
-      this.auth.getAllUser().subscribe(res => {
-        this.allUser = res
-        this.allUser.filter(res => {
-          if (res) {
-            if (res.email == this.user.email && res.password == this.user.password) {
-              this.makeRandom(this.lengthOfCode, this.possible);
-              this.form.reset();
-              this.router.navigate(['customers/card-view']);
-              this.notifyService.showSuccess("Successfully Login !!", "Notification");
+      if (formObject?.invalid) {
+        console.log("invlid")
+        this.isValidFormSubmitted = false;
+      }
+      else {
+        console.log("valid")
+        this.isValidFormSubmitted = true;
+        this.auth.getAllUser().subscribe(res => {
+          this.allUser = res
+          this.allUser.filter(res => {
+            if (res) {
+              if (res.email == this.user.email && res.password == this.user.password) {
+                this.makeRandom(this.lengthOfCode, this.possible);
+                this.form.reset();
+                this.router.navigate(['customers/card-view']);
+                this.notifyService.showSuccess("Successfully Login !!", "Notification");
+              }
+              else {
+                this.alertDisplay = true
+                this.msg = "Invalid Credentials"
+                setTimeout(() => {
+                  this.alertDisplay = false
+                }, 3000);
+              }
             }
+
             else {
-              this.alertDisplay = true
-              this.msg = "Invalid Credentials"
-              setTimeout(() => {
-                this.alertDisplay = false
-              }, 3000);
+              ////////
             }
-          }
-          else {
-            ////////
-          }
-        })
-      }, (err => {
-        this.notifyService.showFail("Server Error !!", "Notification");
-      }))
+          })
+        }, (err => {
+          this.notifyService.showFail("Server Error !!", "Notification");
+        }))
+
+      }
     }
     catch (err) {
       console.log(err)

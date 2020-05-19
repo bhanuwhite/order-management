@@ -9,6 +9,7 @@
     itemsPerPage: 5,
     currentPage: page,
     totalItems: totalRecords }">
+
         <div class="card">
             <div class="card-header bg-primary headingEdit">
                 <span (click)="getDetails(customer)">{{customer.name}}</span>
@@ -28,6 +29,8 @@
             </div>
         </div>
     </div>
+
+
 </div>
 
 <div class="row" *ngIf="searchText?.length>0">
@@ -57,11 +60,12 @@
 </div>
 
 
+
 <h3>{{errorMsg}}</h3>
 
 
 <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"
-    *ngIf="!searchText">
+    *ngIf="!searchText && totalRecords?.length>0">
 </pagination-controls>
 
 <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"

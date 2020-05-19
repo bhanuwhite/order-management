@@ -21,10 +21,12 @@ export class CardViewComponent implements OnInit {
   isEdit: boolean = false;
   search1: any;
   result: any;
+
   @ViewChild('myForm') form: any;
   cityList: string[] = Constant.city;
   allCustomer: Customers[];
   errorMsg: string;
+
 
   user: any = {
     name: '',
@@ -36,66 +38,108 @@ export class CardViewComponent implements OnInit {
     image: ''
   };
 
-  constructor(private customerService: CustomerService, private auth: AuthService, private router:Router, 
-    private spinner: NgxSpinnerService  , private notifyService:NotificationService ) {}
+  constructor(private customerService: CustomerService, private auth: AuthService, private router: Router,
+    private spinner: NgxSpinnerService, private notifyService: NotificationService) { }
 
   ngOnInit(): void {
     this.getCustomerList();
   }
-
-  public getCustomer(user):void  {
+  // function for get the selected id 
+  public getCustomer(user): void {
     this.router.navigate(['/customers/edit-customer']);
-    this.customerService.selectedId.next(user);   
+    this.customerService.selectedId.next(user);
   }
-// fuction for customer details 
-  public getDetails(user):void  {
+  // fuction for customer details 
+  public getDetails(user): void {
     this.router.navigate(['/customers/customer-details']);
-    this.customerService.selectedId.next(user);   
+    this.customerService.selectedId.next(user);
   }
-//fuction for Orders
-  public getOrders(user):void  {
-      this.customerService.selectedId.next(user);   
-  }   
+  //fuction for Orders
+  public getOrders(user): void {
+    this.customerService.selectedId.next(user);
+  }
 
   // function for customer list
   public getCustomerList() {
-    this.spinner.show();
-    this.customerService.getCardViewCustomer().subscribe((res) => {
-      this.spinner.hide();
-      this.allCustomer = res
-      this.totalRecords = res.length;
-    },
-      (error) => { this.errorMsg = error });
+    try {
+      this.spinner.show();
+      this.customerService.getCardViewCustomer().subscribe((res) => {
+        if (res) {
+          if (res.length == 0) {
+            this.errorMsg = "No Customer Found"
+            setTimeout(() => {
+              this.spinner.hide();
+            }, 2000);
+          }
+          else {
+            this.errorMsg = ""
+            this.spinner.hide();
+            this.allCustomer = res
+            this.totalRecords = res.length;
+          }
+
+        } else {
+          ////
+        }
+      },
+        (error) => { this.errorMsg = error });
+    }
+    catch (err) {
+      this.errorMsg = err
+    }
   }
- 
+
   // function for customer details
   viewCustomerDetails(id: number) {
-    this.spinner.show();
-    let viewdata;
-    this.customerService.getCardViewCustomer().subscribe(data => {
-      this.spinner.hide();      
-    });
+    try {
+      this.spinner.show();
+      this.customerService.getCardViewCustomer().subscribe(data => {
+        this.spinner.hide();
+        this.errorMsg = ""
+      });
+    }
+    catch (err) {
+      this.errorMsg = err
+    }
   }
 
   // function for delete customer
   public deleteCustomer(customer: Customers): void {
-    this.spinner.show();
-    this.customerService.deleteCustomer(+customer.id).subscribe(
-      data => {
-        this.spinner.hide();
-        this.notifyService.showFail("Customer Deleted Successfully !!", "Notification");
-        this.allCustomer = this.allCustomer.filter(u =>
-          u !== customer)
-      }
-    );
+    try {
+      this.spinner.show();
+      this.customerService.deleteCustomer(+customer.id).subscribe(
+        data => {
+          this.spinner.hide();
+          this.notifyService.showFail("Customer Deleted Successfully !!", "Notification");
+          this.allCustomer = this.allCustomer.filter(u =>
+            u !== customer)
+          this.errorMsg = ""
+        }
+      );
+    }
+    catch (err) {
+      this.errorMsg = err
+    }
   }
 
   // function for filter 
   findSearch(val) {
-    this.searchText = val.toLowerCase();
-    this.result = this.allCustomer.filter(all => {
-      return all.name.toLowerCase().includes(this.searchText);
-    })
+    try {
+
+      this.searchText = val.toLowerCase();
+      this.result = this.allCustomer.filter(all => {
+        return all.name.toLowerCase().includes(this.searchText);
+      })
+      if (this.result.length == 0) {
+        this.errorMsg = "No Customer Found"
+      } else {
+        this.errorMsg = ""
+      }
+
+    }
+    catch (err) {
+      this.errorMsg = err
+    }
   }
 
 }

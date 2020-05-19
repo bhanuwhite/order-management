@@ -16,11 +16,10 @@ export class EditCustomerComponent implements OnInit {
   urls: File[];
   uploadImage: File[];
   isEdit: boolean = false;
-  images:string;
+  images: string;
 
   user: any = {
     name: '',
-    gender: '',
     address: '',
     city: '',
     lat: '',
@@ -51,28 +50,36 @@ export class EditCustomerComponent implements OnInit {
       this.currentUserId = resp['id']
       this.user = resp;
       //this.images=this.user.image;
-     // console.log( "this.user.image "+this.user.image);
+      // console.log( "this.user.image "+this.user.image);
       // "this.images= "+this.images+
-      })
+    })
   }
   // function for update customer
   updateUser(myObj) {
     if (this.isEdit) {
-      myObj.image = this.uploadImage;
-        }
-    else {
-      myObj.image = this.user.image;
+      myObj.value.image = this.uploadImage;
     }
-    this.customerService.updateCardViewCustomer(this.currentUserId, myObj).subscribe(res => {
-      this.notifyService.showSuccess("Customer Updated Successfully !!", "Notification");
-      this.router.navigate(['customers/card-view'])
-    })
+    else {
+      myObj.value.image = this.user.image;
+    }
+    if (myObj.value?.invalid) {
+      console.log("invalid")
+      this.isValidFormSubmitted = false;
+    }
+    else {
+      console.log("valid")
+      this.isValidFormSubmitted = true;
+      this.customerService.updateCardViewCustomer(this.currentUserId, myObj.value).subscribe(res => {
+        this.notifyService.showSuccess("Customer Updated Successfully !!", "Notification");
+        this.router.navigate(['customers/card-view'])
+      })
+    }
   }
 
   // on Change FileUpload Function & validating the file type and file size
   public onSelectFile(event): any {
-    
-     this.urls = [];
+
+    this.urls = [];
     if (event.target.files) {
       for (let i = 0; i < event.target.files.length; i++) {
         if (event.target.files[i]) {
@@ -81,9 +88,9 @@ export class EditCustomerComponent implements OnInit {
             var reader = new FileReader();
             reader.readAsDataURL(event.target.files[i]);
             reader.onload = (event: any) => {
-                            if (event.loaded < 3000000) {
-                              this.isEdit = true;
-                             // this.images.push(event.target.result);
+              if (event.loaded < 3000000) {
+                this.isEdit = true;
+                // this.images.push(event.target.result);
                 this.uploadImage = event.target.result;
                 this.images = this.uploadImage.toString();
               }

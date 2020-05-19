@@ -16,13 +16,12 @@ export class AddCustomerComponent implements OnInit {
   cityList: string[] = Constant.city;
   user: any = {
     name: '',
-    gender: '',
     address: '',
     city: '',
     lat: '',
     lng: '',
-    image: ''
   };
+
   constructor(
     private customerService: CustomerService,
     private router: Router,
@@ -30,17 +29,28 @@ export class AddCustomerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void { }
-
-  public addCustomer(formObject): void {
-    console.log(formObject);
-    console.log(formObject.image, typeof (formObject.image))
-    formObject.image = this.uploadImage;
-    formObject.lat = "33.4484";
-    formObject.lng = "112.0740";
-      this.customerService.createCustomer(formObject).subscribe(data => {
-      this.notifyService.showSuccess("Customer Added Successfully !!", "Notification");
-      this.router.navigate(['customers/card-view'])
-    });
+  // function for add customer
+  onSubmit(formObject) {
+    try {
+      formObject.value.lat = "33.4484";
+      formObject.value.lng = "112.0740";
+      formObject.value.image = this.uploadImage;
+      if (formObject.value?.invalid) {
+        console.log("invalid")
+        this.isValidFormSubmitted = false;
+      }
+      else {
+        console.log("valid")
+        this.isValidFormSubmitted = true;
+        this.customerService.createCustomer(formObject.value).subscribe(data => {
+          this.notifyService.showSuccess("Customer Added Successfully !!", "Notification");
+          this.router.navigate(['customers/card-view'])
+        });
+      }
+    }
+    catch (err) {
+      console.log(err)
+    }
   }
 
   // on Change FileUpload Function & validating the file type and file size
@@ -58,7 +68,7 @@ export class AddCustomerComponent implements OnInit {
               console.log(event)
               if (event.loaded < 3000000) {
                 this.uploadImage = event.target.result
-                              }
+              }
               else {
                 this.failFileSize();
               }
