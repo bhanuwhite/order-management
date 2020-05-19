@@ -8,16 +8,18 @@ export class NotificationService {
 
   public showSuccess(message, title) {
     this.toastr.success(message, title, {
-      timeOut: 3000,
+      timeOut: 4000,
       positionClass: 'toast-top-right'
     })
   }
 
   public showFail(message, title) {
     this.toastr.error(message, title, {
-      timeOut: 3000,
+      timeOut: 4000,
       positionClass: 'toast-top-right'
     })
   }
+
+
 
 }
