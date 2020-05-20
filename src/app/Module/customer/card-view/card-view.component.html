@@ -64,8 +64,13 @@
 <h3>{{errorMsg}}</h3>
 
 
+<<<<<<< HEAD
 <pagination-controls id="listing_pagination" maxSize="8" directionLinks="true" (pageChange)="page = $event"
 *ngIf="!searchText || totalRecords?.length>0" >
+=======
+<pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"
+    *ngIf="!searchText || totalRecords?.length>0">
+>>>>>>> 7a48dae978ecb3edd5bb96c0f1387ccc87758d29
 </pagination-controls>
 
 

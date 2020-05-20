@@ -64,9 +64,9 @@ export class ListViewComponent implements OnInit {
   public deleteCustomer(customer: Customers): void {
     this.customerService.deleteCustomer(+customer.id).subscribe(
       data => {
-      this.listCustomer = this.listCustomer.filter(u =>
-        u !== customer),
-        this.notifyService.showFail("Customer Deleted Successfully !!", "Notification");
+        this.listCustomer = this.listCustomer.filter(u =>
+          u !== customer),
+          this.notifyService.showFail("Customer Deleted Successfully !!", "Notification");
       }
     );
   }
