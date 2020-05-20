@@ -65,7 +65,7 @@
 
 
 <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"
-    *ngIf="!searchText && totalRecords?.length>0">
+    *ngIf="!searchText || totalRecords?.length>0">
 </pagination-controls>
 
 <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"
