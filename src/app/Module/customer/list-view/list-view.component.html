@@ -16,6 +16,15 @@
                 <td><i (click)="getCustomer(customer)" class="fas fa-edit"></i> <i class="fas fa-trash ml-3"
                         (click)="deleteCustomer(customer)"></i> </td>
             </tr>
+            <tr *ngIf="errorFlag" >
+                <td>{{errorMsg}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr> 
+
         </tbody>
     </table>
 </div>
+
+

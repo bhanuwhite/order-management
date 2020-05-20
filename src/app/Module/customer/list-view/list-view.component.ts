@@ -15,6 +15,7 @@ export class ListViewComponent implements OnInit {
   listCustomer: Customers[];
   errorMsg: string;
   totalRecords: number;
+  errorFlag: boolean= false;
 
   constructor(private customerService: CustomerService,
     private notifyService: NotificationService,
@@ -25,14 +26,43 @@ export class ListViewComponent implements OnInit {
     this.getCustomerList();
   }
   // funtion to get all customers
-  public getCustomerList(): void {
-    this.customerService.getCardViewCustomer().subscribe(res => {
-      this.spinner.hide();
-      this.listCustomer = res;
-      this.totalRecords = res.length;
-    },
+  // public getCustomerList(): void {
+  //   this.customerService.getCardViewCustomer().subscribe(res => {
+  //     this.spinner.hide();
+  //     this.listCustomer = res;
+  //     this.totalRecords = res.length;
+  //   },
+  public getCustomerList() {
+    try {
+      this.spinner.show();
+      this.customerService.getCardViewCustomer().subscribe((res) => {
+        if (res) {
+          if (res.length == 0) {
+            this.errorMsg = "No Customer Found";
+            this.errorFlag = true;
+            setTimeout(() => {
+              this.spinner.hide();
+            }, 2000);
+          }
+          else {
+            this.errorMsg = ""
+            this.spinner.hide();
+            this.listCustomer = res
+            this.totalRecords = res.length;
+          }
+
+        } else {
+          ////
+        }
+      },
+
       (error) => { this.errorMsg = error });
+    }
+    catch (err) {
+      this.errorMsg = err
+    }
   }
+
   // funtion for delete 
   public deleteCustomer(customer: Customers): void {
     this.customerService.deleteCustomer(+customer.id).subscribe(

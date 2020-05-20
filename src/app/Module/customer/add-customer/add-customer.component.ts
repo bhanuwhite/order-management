@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../../../Shared/Services/customer.service';
 import { Router } from '@angular/router';
 import { Constant } from '../../../Shared/utility/constant';
+import { MapsService } from 'src/app/Shared/Services/maps.service';
 
 @Component({
   selector: 'app-add-customer',
@@ -14,6 +15,10 @@ export class AddCustomerComponent implements OnInit {
   urls: File[];
   uploadImage: File[];
   cityList: string[] = Constant.city;
+  completeAddress: string;
+  mapslng: number;
+  mapslat: number;
+  images:any=[];
   user: any = {
     name: '',
     address: '',
@@ -25,10 +30,28 @@ export class AddCustomerComponent implements OnInit {
   constructor(
     private customerService: CustomerService,
     private router: Router,
-    private notifyService: NotificationService
+    private notifyService: NotificationService,
+    private mapsService: MapsService
   ) { }
 
   ngOnInit(): void { }
+
+  public addCustomer(formObject): void {
+    this.completeAddress = formObject.address + formObject.city;
+    this.mapsService.getMapInfo().subscribe(data => {
+      debugger;
+      this.mapslat = data.candidates[0].geometry.location.lat;
+      this.mapslng = data.candidates[0].geometry.location.lng;
+    });
+    console.log("this.mapslat = " + this.mapslat + "  this.mapslng = " + this.mapslng);
+    formObject.image = this.uploadImage;
+    formObject.lat = this.mapslat;
+    formObject.lng = this.mapslng;
+    this.customerService.createCustomer(formObject).subscribe(data => {
+      this.notifyService.showSuccess("Customer Added Successfully !!", "Notification");
+      this.router.navigate(['customers/card-view'])
+    });
+  }
   // function for add customer
   onSubmit(formObject) {
     try {
@@ -55,7 +78,6 @@ export class AddCustomerComponent implements OnInit {
 
   // on Change FileUpload Function & validating the file type and file size
   public onSelectFile(event): any {
-    console.log(event)
     this.urls = [];
     if (event.target.files) {
       for (let i = 0; i < event.target.files.length; i++) {
@@ -67,6 +89,9 @@ export class AddCustomerComponent implements OnInit {
             reader.onload = (event: any) => {
               console.log(event)
               if (event.loaded < 3000000) {
+                this.images=[];
+                this.images.push(event.target.result);
+                debugger;
                 this.uploadImage = event.target.result
               }
               else {
@@ -81,11 +106,7 @@ export class AddCustomerComponent implements OnInit {
       }
     }
   }
-
   failFileSize() {
     // this.notifyService.failFileSize("File Size Exceeded !!", "Notification");
   }
-
-
-
 }
