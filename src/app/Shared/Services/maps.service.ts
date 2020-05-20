@@ -10,13 +10,12 @@ import { Constant } from "../utility/constant";
 export class MapsService {
 
   myURl="../assets/json/testGeometry.json"
-  //checkURL:string;
+  
   constructor(private  http:HttpClient ) { }
  
-  public getMapInfo():Observable<Maps>{
+  public getMapInfo():Observable<Maps>{  
    return this.http.get<Maps>(this.myURl);
-
-      //  return this.http.get<Maps>(Constant.mapAPI+address+ Constant.mapPara + Constant.googleKey);
+// return this.http.get<Maps>(Constant.mapAPI+address+ Constant.mapPara + Constant.googleKey);
   }
 
 }

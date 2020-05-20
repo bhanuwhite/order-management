@@ -31,14 +31,11 @@ export class LoginComponent implements OnInit {
 
   // function for login
   public onSubmit(formObject): void {
-    console.log(formObject)
     try {
       if (formObject?.invalid) {
-        console.log("invlid")
         this.isValidFormSubmitted = false;
       }
       else {
-        console.log("valid")
         this.isValidFormSubmitted = true;
         this.auth.getAllUser().subscribe(res => {
           this.allUser = res

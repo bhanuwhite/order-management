@@ -25,8 +25,8 @@ export class EditCustomerComponent implements OnInit {
     lat: '',
     lng: '',
     image: ''
-
   };
+
   @ViewChild('myForm') form: any;
   cityList: string[] = Constant.city
   allCustomer: Customers[];
@@ -49,9 +49,6 @@ export class EditCustomerComponent implements OnInit {
     this.customerService.getSelectedId.subscribe(resp => {
       this.currentUserId = resp['id']
       this.user = resp;
-      //this.images=this.user.image;
-      // console.log( "this.user.image "+this.user.image);
-      // "this.images= "+this.images+
     })
   }
   // function for update customer
@@ -63,11 +60,9 @@ export class EditCustomerComponent implements OnInit {
       myObj.value.image = this.user.image;
     }
     if (myObj.value?.invalid) {
-      console.log("invalid")
       this.isValidFormSubmitted = false;
     }
     else {
-      console.log("valid")
       this.isValidFormSubmitted = true;
       this.customerService.updateCardViewCustomer(this.currentUserId, myObj.value).subscribe(res => {
         this.notifyService.showSuccess("Customer Updated Successfully !!", "Notification");

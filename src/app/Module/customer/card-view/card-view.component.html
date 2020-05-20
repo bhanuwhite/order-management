@@ -6,7 +6,7 @@
 <br />
 <div class="row" *ngIf="!searchText">
     <div class="col-sm-3 cardPadding" *ngFor="let customer of allCustomer | paginate: { id: 'listing_pagination',
-    itemsPerPage: 5,
+    itemsPerPage: 8,
     currentPage: page,
     totalItems: totalRecords }">
 
@@ -35,7 +35,7 @@
 
 <div class="row" *ngIf="searchText?.length>0">
     <div class="col-sm-3 cardPadding" *ngFor="let customer of result | paginate: { id: 'listing_pagination',
-    itemsPerPage: 5,
+    itemsPerPage: 8,
     currentPage: page,
     totalItems: result }">
         <div class="card">
@@ -64,11 +64,12 @@
 <h3>{{errorMsg}}</h3>
 
 
-<pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"
-    *ngIf="!searchText && totalRecords?.length>0">
+<pagination-controls id="listing_pagination" maxSize="8" directionLinks="true" (pageChange)="page = $event"
+*ngIf="!searchText || totalRecords?.length>0" >
 </pagination-controls>
 
-<pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"
+
+<pagination-controls id="listing_pagination" maxSize="8" directionLinks="true" (pageChange)="page = $event"
     *ngIf="searchText?.length>0">
 </pagination-controls>
 

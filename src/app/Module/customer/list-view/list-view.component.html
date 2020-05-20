@@ -9,7 +9,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let customer of listCustomer">
+            <tr *ngFor="let customer of listCustomer | paginate: { id: 'listing_pagination',
+            itemsPerPage: 5,
+            currentPage: page,
+            totalItems: totalRecords }">
                 <td><img width="40" height="40" src="{{customer.image}}" alt="Card image"></td>
                 <td>{{customer.name}}</td>
                 <td>{{customer.address}}</td>
@@ -24,6 +27,9 @@
             </tr> 
 
         </tbody>
+        <div>
+            <pagination-controls  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+        </div>
     </table>
 </div>
 

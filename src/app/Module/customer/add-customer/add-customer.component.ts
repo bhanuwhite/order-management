@@ -18,7 +18,7 @@ export class AddCustomerComponent implements OnInit {
   completeAddress: string;
   mapslng: number;
   mapslat: number;
-  images:any=[];
+  images: any = [];
   user: any = {
     name: '',
     address: '',
@@ -36,34 +36,23 @@ export class AddCustomerComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  public addCustomer(formObject): void {
-    this.completeAddress = formObject.address + formObject.city;
-    this.mapsService.getMapInfo().subscribe(data => {
-      debugger;
-      this.mapslat = data.candidates[0].geometry.location.lat;
-      this.mapslng = data.candidates[0].geometry.location.lng;
-    });
-    console.log("this.mapslat = " + this.mapslat + "  this.mapslng = " + this.mapslng);
-    formObject.image = this.uploadImage;
-    formObject.lat = this.mapslat;
-    formObject.lng = this.mapslng;
-    this.customerService.createCustomer(formObject).subscribe(data => {
-      this.notifyService.showSuccess("Customer Added Successfully !!", "Notification");
-      this.router.navigate(['customers/card-view'])
-    });
-  }
   // function for add customer
-  onSubmit(formObject) {
+  public onSubmit(formObject): void {
     try {
-      formObject.value.lat = "33.4484";
-      formObject.value.lng = "112.0740";
+      this.completeAddress = formObject.address + formObject.city;
+      this.mapsService.getMapInfo().subscribe(data => {
+        debugger;
+        this.mapslat = data.candidates[0].geometry.location.lat;
+        this.mapslng = data.candidates[0].geometry.location.lng;
+      });
+      console.log("this.mapslat = " + this.mapslat + "  this.mapslng = " + this.mapslng);
+      formObject.value.lat = this.mapslat.toString();
+      formObject.value.lng = this.mapslng.toString();
       formObject.value.image = this.uploadImage;
       if (formObject.value?.invalid) {
-        console.log("invalid")
         this.isValidFormSubmitted = false;
       }
       else {
-        console.log("valid")
         this.isValidFormSubmitted = true;
         this.customerService.createCustomer(formObject.value).subscribe(data => {
           this.notifyService.showSuccess("Customer Added Successfully !!", "Notification");
@@ -72,7 +61,7 @@ export class AddCustomerComponent implements OnInit {
       }
     }
     catch (err) {
-      console.log(err)
+
     }
   }
 
@@ -87,11 +76,9 @@ export class AddCustomerComponent implements OnInit {
             var reader = new FileReader();
             reader.readAsDataURL(event.target.files[i]);
             reader.onload = (event: any) => {
-              console.log(event)
               if (event.loaded < 3000000) {
-                this.images=[];
+                this.images = [];
                 this.images.push(event.target.result);
-                debugger;
                 this.uploadImage = event.target.result
               }
               else {

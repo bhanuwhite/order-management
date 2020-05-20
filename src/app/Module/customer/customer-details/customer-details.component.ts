@@ -11,8 +11,8 @@ import { Customers } from 'src/app/Shared/models/customers';
 export class CustomerDetailsComponent implements OnInit {
 
   currentUserId:any;
-  lat: number = 33.4484;
-  lng: number = 112.0740;
+  lat: number = 40.7217197;
+  lng: number = -74.0008167;
   setLat:number;
   setLng : number;
   user: any = {

@@ -16,6 +16,9 @@ export class ListViewComponent implements OnInit {
   errorMsg: string;
   totalRecords: number;
   errorFlag: boolean= false;
+  page: number = 1;
+  // searchText: any;
+  // result:any;
 
   constructor(private customerService: CustomerService,
     private notifyService: NotificationService,
@@ -25,13 +28,7 @@ export class ListViewComponent implements OnInit {
   ngOnInit(): void {
     this.getCustomerList();
   }
-  // funtion to get all customers
-  // public getCustomerList(): void {
-  //   this.customerService.getCardViewCustomer().subscribe(res => {
-  //     this.spinner.hide();
-  //     this.listCustomer = res;
-  //     this.totalRecords = res.length;
-  //   },
+ 
   public getCustomerList() {
     try {
       this.spinner.show();
