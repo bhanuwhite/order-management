@@ -18,6 +18,7 @@ export class AddCustomerComponent implements OnInit {
   completeAddress: string;
   mapslng: number;
   mapslat: number;
+  images:any=[];
   user: any = {
     name: '',
     address: '',
@@ -37,15 +38,15 @@ export class AddCustomerComponent implements OnInit {
 
   public addCustomer(formObject): void {
     this.completeAddress = formObject.address + formObject.city;
-    this.mapsService.getMapInfo(this.completeAddress).subscribe(data => {
+    this.mapsService.getMapInfo().subscribe(data => {
       debugger;
       this.mapslat = data.candidates[0].geometry.location.lat;
       this.mapslng = data.candidates[0].geometry.location.lng;
     });
     console.log("this.mapslat = " + this.mapslat + "  this.mapslng = " + this.mapslng);
     formObject.image = this.uploadImage;
-    formObject.lat = "33.4484";
-    formObject.lng = "112.0740";
+    formObject.lat = this.mapslat;
+    formObject.lng = this.mapslng;
     this.customerService.createCustomer(formObject).subscribe(data => {
       this.notifyService.showSuccess("Customer Added Successfully !!", "Notification");
       this.router.navigate(['customers/card-view'])
@@ -88,6 +89,9 @@ export class AddCustomerComponent implements OnInit {
             reader.onload = (event: any) => {
               console.log(event)
               if (event.loaded < 3000000) {
+                this.images=[];
+                this.images.push(event.target.result);
+                debugger;
                 this.uploadImage = event.target.result
               }
               else {
@@ -102,11 +106,7 @@ export class AddCustomerComponent implements OnInit {
       }
     }
   }
-
   failFileSize() {
     // this.notifyService.failFileSize("File Size Exceeded !!", "Notification");
   }
-
-
-
 }
